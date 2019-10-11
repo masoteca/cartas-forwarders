@@ -58,7 +58,10 @@
                                     <label class="form-control-label" for="input-password-confirmation">{{ __('Confirm Password') }}</label>
                                     <input type="password" name="password_confirmation" id="input-password-confirmation" class="form-control form-control-alternative" placeholder="{{ __('Confirm Password') }}" value="">
                                 </div>
-
+                                <div class="form-group">
+                                    <label class="form-control-label" for="roles">{{ __('Roles') }}</label>
+                                    {!! Form::select('roles[]', $roles, $userRole , array('class' => 'form-control' ,'multiple')) !!}
+                                </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                                 </div>

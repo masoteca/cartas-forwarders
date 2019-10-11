@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2019-10-11 16:40:00.
+    * Generated on 2019-10-11 19:22:32.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -133,7 +133,6 @@ namespace PHPSTORM_META {
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'html' => \Collective\Html\HtmlBuilder::class,
-        'laravel-fullcalendar' => \MaddHatter\LaravelFullcalendar\Calendar::class,
         'log' => \Illuminate\Log\LogManager::class,
         'mailer' => \Illuminate\Mail\Mailer::class,
         'memcached.connector' => \Illuminate\Cache\MemcachedConnector::class,
@@ -283,7 +282,6 @@ namespace PHPSTORM_META {
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'html' => \Collective\Html\HtmlBuilder::class,
-        'laravel-fullcalendar' => \MaddHatter\LaravelFullcalendar\Calendar::class,
         'log' => \Illuminate\Log\LogManager::class,
         'mailer' => \Illuminate\Mail\Mailer::class,
         'memcached.connector' => \Illuminate\Cache\MemcachedConnector::class,
@@ -433,7 +431,6 @@ namespace PHPSTORM_META {
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'html' => \Collective\Html\HtmlBuilder::class,
-        'laravel-fullcalendar' => \MaddHatter\LaravelFullcalendar\Calendar::class,
         'log' => \Illuminate\Log\LogManager::class,
         'mailer' => \Illuminate\Mail\Mailer::class,
         'memcached.connector' => \Illuminate\Cache\MemcachedConnector::class,
@@ -583,7 +580,6 @@ namespace PHPSTORM_META {
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'html' => \Collective\Html\HtmlBuilder::class,
-        'laravel-fullcalendar' => \MaddHatter\LaravelFullcalendar\Calendar::class,
         'log' => \Illuminate\Log\LogManager::class,
         'mailer' => \Illuminate\Mail\Mailer::class,
         'memcached.connector' => \Illuminate\Cache\MemcachedConnector::class,
@@ -733,7 +729,6 @@ namespace PHPSTORM_META {
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'html' => \Collective\Html\HtmlBuilder::class,
-        'laravel-fullcalendar' => \MaddHatter\LaravelFullcalendar\Calendar::class,
         'log' => \Illuminate\Log\LogManager::class,
         'mailer' => \Illuminate\Mail\Mailer::class,
         'memcached.connector' => \Illuminate\Cache\MemcachedConnector::class,
@@ -883,7 +878,6 @@ namespace PHPSTORM_META {
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'html' => \Collective\Html\HtmlBuilder::class,
-        'laravel-fullcalendar' => \MaddHatter\LaravelFullcalendar\Calendar::class,
         'log' => \Illuminate\Log\LogManager::class,
         'mailer' => \Illuminate\Mail\Mailer::class,
         'memcached.connector' => \Illuminate\Cache\MemcachedConnector::class,
@@ -1033,7 +1027,6 @@ namespace PHPSTORM_META {
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'html' => \Collective\Html\HtmlBuilder::class,
-        'laravel-fullcalendar' => \MaddHatter\LaravelFullcalendar\Calendar::class,
         'log' => \Illuminate\Log\LogManager::class,
         'mailer' => \Illuminate\Mail\Mailer::class,
         'memcached.connector' => \Illuminate\Cache\MemcachedConnector::class,
@@ -1183,7 +1176,6 @@ namespace PHPSTORM_META {
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'html' => \Collective\Html\HtmlBuilder::class,
-        'laravel-fullcalendar' => \MaddHatter\LaravelFullcalendar\Calendar::class,
         'log' => \Illuminate\Log\LogManager::class,
         'mailer' => \Illuminate\Mail\Mailer::class,
         'memcached.connector' => \Illuminate\Cache\MemcachedConnector::class,

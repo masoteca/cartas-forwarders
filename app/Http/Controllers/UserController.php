@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the users
      *
-     * @param  \App\User  $model
+     * @param \App\User $model
      * @return \Illuminate\View\View
      */
     public function index(User $model)
@@ -26,19 +28,25 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::pluck('name', 'name')->all();
+        return view('users.create', ['roles' => $roles]);
     }
 
     /**
      * Store a newly created user in storage
      *
-     * @param  \App\Http\Requests\UserRequest  $request
-     * @param  \App\User  $model
+     * @param \App\Http\Requests\UserRequest $request
+     * @param \App\User $model
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(UserRequest $request, User $model)
+    public function store(UserRequest $request)
     {
-        $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+
+
+        $user = User::create($input);
+        $user->assignRole($request->input('roles'));
 
         return redirect()->route('user.index')->withStatus(__('User successfully created.'));
     }
@@ -46,27 +54,34 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified user
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
      * @return \Illuminate\View\View
      */
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $roles = Role::pluck('name', 'name')->all();
+        $userRole = $user->roles->pluck('name', 'name')->all();
+        return view('users.edit', compact('user', 'roles', 'userRole'));
     }
 
     /**
      * Update the specified user in storage
      *
-     * @param  \App\Http\Requests\UserRequest  $request
-     * @param  \App\User  $user
+     *
+     * @param \App\User $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserRequest $request, User  $user)
+    public function update(Request $request, User $user)
     {
-        $user->update(
-            $request->merge(['password' => Hash::make($request->get('password'))])
-                ->except([$request->get('password') ? '' : 'password']
-        ));
+        $input = $request->all();
+        if (!empty($input['password'])) {
+            $input['password'] = Hash::make($input['password']);
+        } else {
+            $input = $request->except('password');
+        }
+        $user->update($input);
+        $user->syncRoles($input['roles']);
+
 
         return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
     }
@@ -74,10 +89,10 @@ class UserController extends Controller
     /**
      * Remove the specified user from storage
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(User  $user)
+    public function destroy(User $user)
     {
         $user->delete();
 

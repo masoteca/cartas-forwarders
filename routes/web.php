@@ -27,5 +27,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('document', 'CartasController@store')->name('cartas.store');
     Route::get('documentos/list', 'HomeController@listarCartas')->name('cartas.list');
+    Route::get('carta/print/{document}', 'PrintsController@printcarta')->name('cartas.print');
 });
 

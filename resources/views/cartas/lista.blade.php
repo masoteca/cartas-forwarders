@@ -60,7 +60,8 @@
                                                 </a>
                                                 <div
                                                     class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-
+                                                    <a class="dropdown-item"
+                                                       href="{{ route('cartas.print', $carta) }}">Imprimir Carta</a>
                                                     @can('user-edit')
                                                         <a class="dropdown-item"
                                                            href="{{ route('user.edit', $carta) }}">{{ __('Edit') }}</a>

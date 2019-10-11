@@ -89,7 +89,10 @@
                                             @endforeach
                                         </table>
                                     </div>
+                                    <hr class="my-2">
+                                    <hr class="my-1">
                                 @endforeach
+
                             </div>
                             <div class="card-footer py-4">
                                 <nav class="d-flex justify-content-end" aria-label="...">

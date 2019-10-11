@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.8.35 on 2019-10-11 10:56:20.
+ * Generated for Laravel 5.8.35 on 2019-10-11 19:22:32.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -3751,6 +3751,110 @@ namespace Illuminate\Support\Facades {
         public static function hasMacro($name)
         {
                         return \Illuminate\Cookie\CookieJar::hasMacro($name);
+        }
+         
+    }
+
+    /**
+     * 
+     *
+     * @see \Illuminate\Encryption\Encrypter
+     */ 
+    class Crypt {
+        
+        /**
+         * Determine if the given key and cipher combination is valid.
+         *
+         * @param string $key
+         * @param string $cipher
+         * @return bool 
+         * @static 
+         */ 
+        public static function supported($key, $cipher)
+        {
+                        return \Illuminate\Encryption\Encrypter::supported($key, $cipher);
+        }
+        
+        /**
+         * Create a new encryption key for the given cipher.
+         *
+         * @param string $cipher
+         * @return string 
+         * @static 
+         */ 
+        public static function generateKey($cipher)
+        {
+                        return \Illuminate\Encryption\Encrypter::generateKey($cipher);
+        }
+        
+        /**
+         * Encrypt the given value.
+         *
+         * @param mixed $value
+         * @param bool $serialize
+         * @return string 
+         * @throws \Illuminate\Contracts\Encryption\EncryptException
+         * @static 
+         */ 
+        public static function encrypt($value, $serialize = true)
+        {
+                        /** @var \Illuminate\Encryption\Encrypter $instance */
+                        return $instance->encrypt($value, $serialize);
+        }
+        
+        /**
+         * Encrypt a string without serialization.
+         *
+         * @param string $value
+         * @return string 
+         * @throws \Illuminate\Contracts\Encryption\EncryptException
+         * @static 
+         */ 
+        public static function encryptString($value)
+        {
+                        /** @var \Illuminate\Encryption\Encrypter $instance */
+                        return $instance->encryptString($value);
+        }
+        
+        /**
+         * Decrypt the given value.
+         *
+         * @param string $payload
+         * @param bool $unserialize
+         * @return mixed 
+         * @throws \Illuminate\Contracts\Encryption\DecryptException
+         * @static 
+         */ 
+        public static function decrypt($payload, $unserialize = true)
+        {
+                        /** @var \Illuminate\Encryption\Encrypter $instance */
+                        return $instance->decrypt($payload, $unserialize);
+        }
+        
+        /**
+         * Decrypt the given string without unserialization.
+         *
+         * @param string $payload
+         * @return string 
+         * @throws \Illuminate\Contracts\Encryption\DecryptException
+         * @static 
+         */ 
+        public static function decryptString($payload)
+        {
+                        /** @var \Illuminate\Encryption\Encrypter $instance */
+                        return $instance->decryptString($payload);
+        }
+        
+        /**
+         * Get the encryption key.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getKey()
+        {
+                        /** @var \Illuminate\Encryption\Encrypter $instance */
+                        return $instance->getKey();
         }
          
     }
@@ -16275,175 +16379,6 @@ namespace Collective\Html {
  
 }
 
-namespace MaddHatter\LaravelFullcalendar\Facades { 
-
-    /**
-     * 
-     *
-     */ 
-    class Calendar {
-        
-        /**
-         * Create an event DTO to add to a calendar
-         *
-         * @param string $title
-         * @param string $isAllDay
-         * @param string|\DateTime $start If string, must be valid datetime format: http://bit.ly/1z7QWbg
-         * @param string|\DateTime $end If string, must be valid datetime format: http://bit.ly/1z7QWbg
-         * @param string $id event Id
-         * @param array $options
-         * @return \MaddHatter\LaravelFullcalendar\SimpleEvent 
-         * @static 
-         */ 
-        public static function event($title, $isAllDay, $start, $end, $id = null, $options = array())
-        {
-                        return \MaddHatter\LaravelFullcalendar\Calendar::event($title, $isAllDay, $start, $end, $id, $options);
-        }
-        
-        /**
-         * Create the <div> the calendar will be rendered into
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function calendar()
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->calendar();
-        }
-        
-        /**
-         * Get the <script> block to render the calendar (as a View)
-         *
-         * @return \Illuminate\View\View 
-         * @static 
-         */ 
-        public static function script()
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->script();
-        }
-        
-        /**
-         * Customize the ID of the generated <div>
-         *
-         * @param string $id
-         * @return \MaddHatter\LaravelFullcalendar\Calendar 
-         * @static 
-         */ 
-        public static function setId($id)
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->setId($id);
-        }
-        
-        /**
-         * Get the ID of the generated <div>
-         * This value is randomized unless a custom value was set via setId
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getId()
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->getId();
-        }
-        
-        /**
-         * Add an event
-         *
-         * @param \Event $event
-         * @param array $customAttributes
-         * @return \MaddHatter\LaravelFullcalendar\Calendar 
-         * @static 
-         */ 
-        public static function addEvent($event, $customAttributes = array())
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->addEvent($event, $customAttributes);
-        }
-        
-        /**
-         * Add multiple events
-         *
-         * @param array|\MaddHatter\LaravelFullcalendar\ArrayAccess $events
-         * @param array $customAttributes
-         * @return \MaddHatter\LaravelFullcalendar\Calendar 
-         * @static 
-         */ 
-        public static function addEvents($events, $customAttributes = array())
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->addEvents($events, $customAttributes);
-        }
-        
-        /**
-         * Set fullcalendar options
-         *
-         * @param array $options
-         * @return \MaddHatter\LaravelFullcalendar\Calendar 
-         * @static 
-         */ 
-        public static function setOptions($options)
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->setOptions($options);
-        }
-        
-        /**
-         * Get the fullcalendar options (not including the events list)
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function getOptions()
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->getOptions();
-        }
-        
-        /**
-         * Set fullcalendar callback options
-         *
-         * @param array $callbacks
-         * @return \MaddHatter\LaravelFullcalendar\Calendar 
-         * @static 
-         */ 
-        public static function setCallbacks($callbacks)
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->setCallbacks($callbacks);
-        }
-        
-        /**
-         * Get the callbacks currently defined
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function getCallbacks()
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->getCallbacks();
-        }
-        
-        /**
-         * Get options+events JSON
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getOptionsJson()
-        {
-                        /** @var \MaddHatter\LaravelFullcalendar\Calendar $instance */
-                        return $instance->getOptionsJson();
-        }
-         
-    }
- 
-}
-
 
 namespace  { 
 
@@ -16466,6 +16401,8 @@ namespace  {
     class Config extends \Illuminate\Support\Facades\Config {}
 
     class Cookie extends \Illuminate\Support\Facades\Cookie {}
+
+    class Crypt extends \Illuminate\Support\Facades\Crypt {}
 
     class DB extends \Illuminate\Support\Facades\DB {}
 
@@ -19241,8 +19178,6 @@ namespace  {
     class Form extends \Collective\Html\FormFacade {}
 
     class Html extends \Collective\Html\HtmlFacade {}
-
-    class Calendar extends \MaddHatter\LaravelFullcalendar\Facades\Calendar {}
  
 }
 
