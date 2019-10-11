@@ -1,0 +1,503 @@
+body {
+    background: #fff;
+    font-family: Calibri;
+    width: 100%;
+    height: auto;
+    margin: 0;
+}
+
+input {
+    width: 90%;
+    font-size: 0.8vw;
+}
+
+select {
+    font-size: 0.8vw;
+    width: 90%;
+}
+
+option {
+    width: 100%;
+    font-size: 0.8vw;
+}
+
+h2 {
+    padding: 2% 0 2% 0;
+}
+
+h3 {
+    padding: 2% 0 2% 0;
+}
+
+p {
+    width: 90%;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+hr {
+    margin: 2% 0 2% 0;
+    height: 1px;
+}
+
+.content {
+    width: 70%;
+    margin: 20px auto;
+}
+
+.content .btn-open-popup {
+    width: auto;
+    text-align: center;
+    border: none;
+    color: #FFF;
+    background: rgb(194, 54, 54);
+    border-radius: 3px;
+    font-family: Calibri;
+    font-size: 0.8vw;
+    cursor: pointer;
+    transition: .3s ease all;
+    padding: 1% 2%;
+    font-weight: bold;
+}
+
+.container .btn-open-popup:hover {
+    background: rgba(194, 54, 54, .9);
+}
+
+#order_number {
+    outline: none;
+    background-color: #81e9f3;
+    border: 0;
+}
+
+/* ------------------------- */
+/* NAVBAR                    */
+/* ------------------------- */
+
+header {
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+}
+
+#div_logo {
+    width: 50vw;
+    height: 100%;
+    margin: 0 auto;
+}
+
+#index_logo {
+    width: auto;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    float: left;
+}
+
+#top_decorative {
+    /*top: 0;*/
+    width: 100%;
+    height: 12vh;
+    background: rgba(60, 60, 60, 0.4); /*background: rgb(194, 54, 54);*/
+}
+
+/* ------------------------- */
+/* SLIDER 					 */
+/* ------------------------- */
+
+.slider {
+    width: 100%;
+    height: 20vh;
+    position: relative;
+}
+
+.slide1, .slide2, .slide3, .slide4, .slide5 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.slide1 {
+    background: url(../images/air_freight.png) no-repeat center;
+    background-size: cover;
+    animation: fade 8s infinite;
+    -webkit-animation: fade 8s infinite;
+}
+
+.slide2 {
+    background: url(../images/ground_freight.png) no-repeat center;
+    background-size: cover;
+    animation: fade2 8s infinite;
+    -webkit-animation: fade2 8s infinite;
+}
+
+.slide3 {
+    background: url(../images/sea_freight.png) no-repeat center;
+    background-size: cover;
+    animation: fade3 8s infinite;
+    -webkit-animation: fade3 8s infinite;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 1
+    }
+    33.333% {
+        opacity: 0
+    }
+    66.666% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+@keyframes fade2 {
+    0% {
+        opacity: 0
+    }
+    33.333% {
+        opacity: 1
+    }
+    66.666% {
+        opacity: 0
+    }
+    100% {
+        opacity: 0
+    }
+}
+
+@keyframes fade3 {
+    0% {
+        opacity: 0
+    }
+    33.333% {
+        opacity: 0
+    }
+    66.666% {
+        opacity: 1
+    }
+    100% {
+        opacity: 0
+    }
+}
+
+/* ------------------------- */
+/* POPUP                     */
+/* ------------------------- */
+
+.overlay {
+    z-index: 4;
+    background: rgba(0, 0, 0, .3);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    visibility: hidden;
+}
+
+.overlay.active {
+    visibility: visible;
+}
+
+.popup {
+    z-index: 5;
+    background: #F8F8F8;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    font-family: Calibri;
+    padding: 20px;
+    text-align: left;
+    width: 40%;
+    transition: .3s ease all;
+    transform: scale(0.7);
+    opacity: 0;
+    max-height: 99%;
+    overflow: auto;
+}
+
+.popup .btn-close-popup {
+    font-size: 0.8vw;
+    line-height: 16px;
+    display: block;
+    text-align: right;
+    transition: .3s ease all;
+    color: #BBBBBB;
+}
+
+.popup .btn-close-popup:hover {
+    color: #000;
+}
+
+.popup form div {
+    display: inline-block;
+    width: 49%;
+    padding: 0 0 2% 0;
+}
+
+form#form-solicitud-reserva div.modal-footer input.btn-submit,div.modal-footer input.btn-submit {
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    color: #fff;
+    background: rgb(194, 54, 54);
+    border-radius: 3px;
+    font-family: Calibri;
+    font-size: 0.8vw;
+    cursor: pointer;
+    transition: .3s ease all;
+    width: auto;
+    text-align: center;
+}
+
+.popup form .btn-submit:hover {
+    background: rgba(194, 54, 54, .9);
+}
+
+/* ------------------------- */
+/* ANIMACIONES               */
+/* ------------------------- */
+.popup.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* ------------------------- */
+/* LOGIN                     */
+/* ------------------------- */
+
+#left_decorative {
+    width: 5%;
+    height: 100vh;
+    background: rgba(194, 54, 54, 0.4);
+    float: left;
+}
+
+#login_logo {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#login_form {
+    margin: 0 auto 0 auto;
+    width: 20%;
+    height: 100vh;
+    background: rgba(60, 60, 60, 0.4);
+    float: left;
+    text-align: center;
+}
+
+#login {
+    background-image: url(../images/background.jpeg);
+    background-position: center center; /* Para dejar la imagen de fondo centrada, vertical y horizontalmente */
+    background-repeat: no-repeat; /* Para que la imagen de fondo no se repita */
+    background-attachment: fixed; /* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
+    background-size: cover; /* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
+    background-color: rgb(194, 54, 54); /* Se muestra un color de fondo mientras se está cargando la imagen de fondo o si hay problemas para cargarla */
+    color: #FFFFFF;
+}
+
+input#password, input#user {
+    outline: none;
+    color: #0F5289;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background: #FFFFFF;
+    border: none;
+    -webkit-border-radius: 0.5vw;
+    -moz-border-radius: 0.5vw;
+    border-radius: 0.5vw;
+    height: auto;
+    width: 80%;
+    padding: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#login_button {
+    outline: none;
+    color: #0F5289;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background: #FFFFFF;
+    border: none;
+    -webkit-border-radius: 0.5vw;
+    -moz-border-radius: 0.5vw;
+    border-radius: 0.5vw;
+    height: auto;
+    width: 80%;
+    padding: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/* ------------------------- */
+/* POPUP2                    */
+/* ------------------------- */
+
+.overlay2 {
+    background: rgba(0, 0, 0, .3);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    visibility: hidden;
+}
+
+.overlay2.active {
+    visibility: visible;
+}
+
+.popup2 {
+    background: #F8F8F8;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    font-family: Calibri;
+    padding: 20px;
+    text-align: left;
+    width: auto;
+    min-width: 1000px;
+    transition: .3s ease all;
+    transform: scale(0.7);
+    opacity: 0;
+    max-height: 99%;
+    overflow: auto;
+}
+
+.popup2 .btn-close-popup2 {
+    font-size: 0.8vw;
+    line-height: 16px;
+    display: block;
+    text-align: right;
+    transition: .3s ease all;
+    color: #BBBBBB;
+}
+
+.popup2 .btn-close-popup2:hover {
+    color: #000;
+}
+
+.submitted {
+    display: table;
+    width: 100%;
+    padding: 0 0 2% 0;
+}
+
+.div-row {
+    display: table-row;
+    width: 100%;
+    padding: 0 0 2% 0;
+}
+
+.div-column {
+    display: table-cell;
+    width: 49%;
+    padding: 0 0 2% 0;
+}
+
+.popup2 .submitted .btn-submit {
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    color: #fff;
+    background: rgb(194, 54, 54);
+    border-radius: 3px;
+    font-family: Calibri;
+    font-size: 0.8vw;
+    cursor: pointer;
+    transition: .3s ease all;
+    width: auto;
+    text-align: center;
+}
+
+.popup2 .submitted .btn-submit:hover {
+    background: rgba(194, 54, 54, .9);
+}
+
+.popup2.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.btn-ok {
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    color: #fff;
+    background: rgb(194, 54, 54);
+    border-radius: 3px;
+    font-family: Calibri;
+    font-size: 0.8vw;
+    cursor: pointer;
+    transition: .3s ease all;
+    width: auto;
+    text-align: center;
+}
+
+.btn-ok:hover {
+    background: rgba(194, 54, 54, .9);
+}
+
+/* RESERVATIONS */
+
+#box {
+    visibility: hidden;
+}
+
+#box.active {
+    visibility: visible;
+}
+
+/* SHIPMENTS */
+
+#box2 {
+    visibility: hidden;
+}
+
+#box2.active {
+    visibility: visible;
+}
+
+th.gray {
+    color: #696969;
+}
+
+table.dataTable thead tr th {
+    border-bottom: 0;
+}
+
+table.dataTable tfoot tr th {
+    border-top: 0;
+}
+
+td.details-control {
+    background: url('https://datatables.net/examples/resources/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+
+tr.shown td.details-control {
+    background: url('https://datatables.net/examples/resources/details_close.png') no-repeat center center;
+}
+
+
