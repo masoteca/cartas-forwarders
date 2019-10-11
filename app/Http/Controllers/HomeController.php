@@ -2,25 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\DataService;
+
 class HomeController extends Controller
 {
+    protected $dataService;
+
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * HomeController constructor.
+     * @param DataService $dataService
      */
-    public function __construct()
+    public function __construct(DataService $dataService)
     {
+        $this->dataService = $dataService;
         $this->middleware('auth');
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        return view('index');
+        return view('index', $this->dataService->getFormData());
     }
 }

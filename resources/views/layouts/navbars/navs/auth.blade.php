@@ -1,6 +1,6 @@
 <!-- Top navbar -->
 
-<nav class="navbar navbar-top navbar-expand-md navbar-dark bg-gradient-primary" id="navbar-main">
+<nav class="navbar navbar-top navbar-expand-md navbar-transparent " id="navbar-main">
     <div class="container-fluid">
         <!-- Brand -->
     {{--         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('home') }}">{{ __('Inicio') }}</a>
@@ -15,7 +15,7 @@
 {{--                </div>--}}
 {{--            </div>--}}
 {{--        </form>--}}
-        <!-- User -->.
+        <!-- User --><div></div>
         <ul class="navbar-nav align-items-center d-none d-md-flex ">
             <li class="nav-item dropdown">
                 <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,18 +35,6 @@
                     <a href="{{ route('profile.edit') }}" class="dropdown-item">
                         <i class="ni ni-single-02"></i>
                         <span>{{ __('My profile') }}</span>
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="ni ni-settings-gear-65"></i>
-                        <span>{{ __('Settings') }}</span>
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="ni ni-calendar-grid-58"></i>
-                        <span>{{ __('Activity') }}</span>
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="ni ni-support-16"></i>
-                        <span>{{ __('Support') }}</span>
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();

@@ -42,6 +42,9 @@ class DatabaseSeeder extends Seeder
 
         $roleadmin->syncPermissions($permissions);
         $user->assignRole([$roleadmin->id]);
+        $this->call(AirlinesTableSeeder::class);
+        $this->call(DestinationsTableSeeder::class);
+        $this->call(ProductsTableSeeder::class);
 
     }
 }

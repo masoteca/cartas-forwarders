@@ -38,6 +38,7 @@
         <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
+
         @stack('js')
 
         <!-- Argon JS -->
