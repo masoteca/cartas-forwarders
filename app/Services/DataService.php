@@ -3,10 +3,13 @@
 
 namespace App\Services;
 
+use App\Models\Document;
 use App\User;
 use App\Models\Destination;
 use App\Models\Product;
 use App\Models\Airline;
+use Auth;
+use Carbon\Carbon;
 
 class DataService
 {
@@ -26,9 +29,19 @@ class DataService
         return Destination::pluck('country', 'code');
     }
 
+    public function cartas_usuario()
+    {
+        //whereEncargado(Auth::user()->name)
+        $cartas = Document::with(['destination', 'product', 'airline'])->orderBy('fecha_envio')->whereBetween('fecha_envio', [Carbon::today()->format('y-m-d'), Carbon::now()->addDays(7)->format('y-m-d'),])->get();
+        return $cartas->groupBy('fecha_envio');
+    }
+
+
+
     public function getFormData()
     {
         return [
+            'cartas' => $this->cartas_usuario(),
             'airlines' => $this->getAirlines(),
             'destinations' => $this->getDestinations(),
             'products' => $this->getProducts(),

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Document;
 use App\Services\DataService;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -26,5 +28,13 @@ class HomeController extends Controller
     public function index()
     {
         return view('index', $this->dataService->getFormData());
+    }
+
+    public function listarCartas(Request $request)
+    {
+        $data = $this->dataService->getFormData();
+        $data['cartas'] = Document::all();
+
+        return view('cartas.lista', $data);
     }
 }

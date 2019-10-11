@@ -26,5 +26,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
     Route::post('document', 'CartasController@store')->name('cartas.store');
+    Route::get('documentos/list', 'HomeController@listarCartas')->name('cartas.list');
 });
 

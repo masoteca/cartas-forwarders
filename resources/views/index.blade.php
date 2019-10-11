@@ -27,9 +27,76 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <table>
+                        <div class="card shadow">
+                            <div class="card-body">
+                                @foreach( $cartas as $dia => $contenido)
+                                    <div class="table-responsive">
+                                        <h4> {{ \Carbon\Carbon::createFromDate($dia)->format('l')}}  {{ $dia }}</h4>
+                                        <table class="table align-items-center">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">AWB</th>
+                                                <th scope="col">Airline</th>
+                                                <th scope="col">Destination</th>
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Encargado</th>
 
-                        </table>
+                                                <th scope="col" style="width: 5%">Acciones</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach( $contenido as $carta)
+                                                <tr>
+                                                    <td>{{$carta->awb}}</td>
+                                                    <td>{{$carta->airline->name}}</td>
+                                                    <td>{{$carta->destination->country }}</td>
+                                                    <td>{{$carta->product->name }}</td>
+                                                    <td>{{$carta->encargado }}</td>
+                                                    <td class="text-right">
+                                                        <div class="dropdown">
+                                                            <a class="btn btn-md btn-icon-only text-light bg-gradient-lighter"
+                                                               href="#"
+                                                               role="button"
+                                                               data-toggle="dropdown" aria-haspopup="true"
+                                                               aria-expanded="false">
+                                                                <i class="fas fa-ellipsis-v"></i>
+                                                            </a>
+                                                            <div
+                                                                class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+
+                                                                @can('user-edit')
+                                                                    <a class="dropdown-item"
+                                                                       href="{{ route('user.edit', $carta) }}">{{ __('Edit') }}</a>
+                                                                @endcan
+                                                                @can('user-delete')
+                                                                    <form action="{{ route('user.destroy', $carta) }}"
+                                                                          method="post">
+                                                                        @csrf
+                                                                        @method('delete')
+
+                                                                        <button type="button" class="dropdown-item"
+                                                                                {{--        onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">--}}
+                                                                                onclick="deletecartadata() === true ? this.parentElement.submit() : ''">
+                                                                            {{ __('Delete') }}
+                                                                        </button>
+
+                                                                    </form>
+                                                                @endcan
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </table>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="card-footer py-4">
+                                <nav class="d-flex justify-content-end" aria-label="...">
+
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -40,5 +107,24 @@
 @endsection
 
 @push('js')
+    <script>
 
+        function deletecartadata() {
+            Swal.fire({
+
+                text: "Seguro que deseas eliminar este registro?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonText: 'No, No Eliminar',
+                confirmButtonText: 'Si! Eliminar',
+
+            }).then((result) => {
+                if (result.value) {
+                    return true;
+                }
+            })
+        }
+
+    </script>
 @endpush

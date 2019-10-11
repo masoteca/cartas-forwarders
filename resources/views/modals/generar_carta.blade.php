@@ -85,13 +85,13 @@
                     success: function (data) {
                         Swal.fire({
                             title: 'Resgistro Creado',
-                            text: "Deseas reiniar el formulario?",
+                            text: "Deseas Duplicar la información?",
                             type: 'success',
                             showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Si! Reiniciarlo',
-                            cancelButtonText: 'No, Mantener datos'
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'No duplicar datos',
+                            cancelButtonText: 'Si! Duplicar datos',
                         }).then((result) => {
                             if (result.value) {
                                 form.trigger('reset')
