@@ -38,6 +38,7 @@
                                     <th scope="col">Destination</th>
                                     <th scope="col">Product</th>
                                     <th scope="col">Encargado</th>
+                                    <th scope="col">Fecha</th>
                                     <th scope="col" style="width: 5%">Acciones</th>
                                 </tr>
                                 </thead>
@@ -49,6 +50,7 @@
                                         <td>{{$carta->destination->country }}</td>
                                         <td>{{$carta->product->name }}</td>
                                         <td>{{$carta->encargado }}</td>
+                                        <td>{{$carta->fecha_envio }}</td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-md btn-icon-only text-light bg-gradient-lighter"

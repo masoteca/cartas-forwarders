@@ -73,7 +73,14 @@
                 @can('user-list')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.index') }}">
-                            <i class="ni ni-circle-08"></i>{{ __('User Management') }}
+                            <i class="ni ni-circle-08"></i>{{ __('Users') }}
+                        </a>
+                    </li>
+                @endcan
+                @can('role-list')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('roles.index') }}">
+                            <i class="ni ni-lock-circle-open"></i>{{ __('Roles') }}
                         </a>
                     </li>
                 @endcan

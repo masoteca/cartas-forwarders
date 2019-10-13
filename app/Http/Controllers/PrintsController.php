@@ -29,9 +29,8 @@ class PrintsController extends Controller
     public function printcarta(Request $request, $id)
     {
         $model = Document::find($id);
-        $compania = strtolower(trim($model->airline()->first()->name));
-        $compania = 'aeromexico';
-        $path = storage_path("app/pdf/{$compania}/cartas.pdf");
+        $aerolinea = strtolower(trim($model->airline()->first()->name));
+        $path = resource_path("pdf/{$aerolinea}/cartas.pdf");
         $pdf = new Fpdi();
         $pdf->setSourceFile($path);
         $tplId = $pdf->importPage(1);
@@ -40,8 +39,8 @@ class PrintsController extends Controller
         $pdf->SetFont('Helvetica');
 
         //switch case
-        switch ($compania) {
-            case 'aeromexico':
+        switch ($aeroloinea) {
+            case 'air new zeland':
 
                 $pdf->SetXY(100, 58);
                 $pdf->SetFontSize(18);

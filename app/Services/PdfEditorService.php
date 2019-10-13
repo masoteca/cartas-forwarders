@@ -15,4 +15,8 @@ class PdfEditorService
         $pdf->useTemplate($tplId, ['adjustPageSize' => true]);
     }
 
+
+
+
+
 }
