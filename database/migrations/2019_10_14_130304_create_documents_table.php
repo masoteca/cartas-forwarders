@@ -21,12 +21,14 @@ class CreateDocumentsTable extends Migration
             $table->date('fecha_envio');
             $table->unsignedBigInteger('id_product');
             $table->unsignedBigInteger('id_airline');
-            $table->string('encargado', 100);
+            $table->string('rut_encargado', 20);
 
             $table->foreign('id_destination')->references('id')->on('destinations');
             $table->foreign('id_product')->references('id')->on('products');
             $table->foreign('id_airline')->references('id')->on('airlines');
+            $table->foreign('rut_encargado')->references('rut')->on('encargados');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

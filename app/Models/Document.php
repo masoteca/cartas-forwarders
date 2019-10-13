@@ -32,6 +32,11 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Document whereIdProduct($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Document whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $rut_encargado
+ * @property-read \App\Models\Airline $airline
+ * @property-read \App\Models\Destination $destination
+ * @property-read \App\Models\Product $product
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Document whereRutEncargado($value)
  */
 class Document extends Model
 {

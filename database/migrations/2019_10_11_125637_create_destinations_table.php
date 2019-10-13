@@ -18,6 +18,7 @@ class CreateDestinationsTable extends Migration
             $table->string('country',50);
             $table->string('code',5);
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

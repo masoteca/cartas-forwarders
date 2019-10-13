@@ -4,6 +4,7 @@ use App\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use \App\Models\Encargado;
 
 class DatabaseSeeder extends Seeder
 {
@@ -45,6 +46,11 @@ class DatabaseSeeder extends Seeder
         $this->call(AirlinesTableSeeder::class);
         $this->call(DestinationsTableSeeder::class);
         $this->call(ProductsTableSeeder::class);
-
+        if ((new Encargado)->where('rut', '24544936-4')->doesntExist()) {
+            Encargado::create([
+                'rut' => '24544936-4',
+                'nombre' => 'jaime mazo',
+            ]);
+        }
     }
 }

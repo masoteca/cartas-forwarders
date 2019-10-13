@@ -30,6 +30,7 @@ class PrintsController extends Controller
     {
         $model = Document::find($id);
         $aerolinea = strtolower(trim($model->airline()->first()->name));
+        $aerolinea = 'aeromexico';
         $path = resource_path("pdf/{$aerolinea}/cartas.pdf");
         $pdf = new Fpdi();
         $pdf->setSourceFile($path);
@@ -39,8 +40,8 @@ class PrintsController extends Controller
         $pdf->SetFont('Helvetica');
 
         //switch case
-        switch ($aeroloinea) {
-            case 'air new zeland':
+        switch ($aerolinea) {
+            case 'aeromexico':
 
                 $pdf->SetXY(100, 58);
                 $pdf->SetFontSize(18);
@@ -62,6 +63,16 @@ class PrintsController extends Controller
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 3);
                 $pdf->SetXY(55, 68);
                 $pdf->Write(12, "{$model->awb} ");
+                break;
+            case 'air new zeland':
+                $pdf->SetXY(100, 58);
+                $pdf->SetFontSize(18);
+                $pdf->Write(12, "{$model->awb}");
+                $pdf->SetXY(50, 75);
+                $pdf->Write(12, "{$model->product->name} ");
+                $pdf->SetXY(80, 100);
+                $pdf->Write(12, "{$model->destination->code} ");
+
                 break;
             default:
                 break;

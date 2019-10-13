@@ -4,6 +4,7 @@
 namespace App\Services;
 
 use App\Models\Document;
+use App\Models\Encargado;
 use App\User;
 use App\Models\Destination;
 use App\Models\Product;
@@ -36,6 +37,10 @@ class DataService
         return $cartas->groupBy('fecha_envio');
     }
 
+    public function getEncargados()
+    {
+        return Encargado::pluck('nombre', 'rut');
+    }
 
 
     public function getFormData()
@@ -45,6 +50,7 @@ class DataService
             'airlines' => $this->getAirlines(),
             'destinations' => $this->getDestinations(),
             'products' => $this->getProducts(),
+            'encargados' => $this->getEncargados()
         ];
     }
 }

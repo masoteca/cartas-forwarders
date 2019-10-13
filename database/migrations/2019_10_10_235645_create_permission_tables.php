@@ -18,24 +18,26 @@ class CreatePermissionTables extends Migration
 
         Schema::create($tableNames['permissions'], function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',100);
-            $table->string('guard_name',100);
+            $table->string('name', 100);
+            $table->string('guard_name', 100);
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
 
         Schema::create($tableNames['roles'], function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',100);
-            $table->string('guard_name',100);
+            $table->string('name', 100);
+            $table->string('guard_name', 100);
+            $table->engine = 'InnoDB';
             $table->timestamps();
         });
 
         Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames) {
             $table->unsignedInteger('permission_id');
-
+            $table->engine = 'InnoDB';
             $table->string('model_type');
             $table->unsignedBigInteger($columnNames['model_morph_key']);
-            $table->index([$columnNames['model_morph_key'], 'model_type', ], 'model_has_permissions_model_id_model_type_index');
+            $table->index([$columnNames['model_morph_key'], 'model_type',], 'model_has_permissions_model_id_model_type_index');
 
             $table->foreign('permission_id')
                 ->references('id')
@@ -43,15 +45,15 @@ class CreatePermissionTables extends Migration
                 ->onDelete('cascade');
 
             $table->primary(['permission_id', $columnNames['model_morph_key'], 'model_type'],
-                    'model_has_permissions_permission_model_type_primary');
+                'model_has_permissions_permission_model_type_primary');
         });
 
         Schema::create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames) {
             $table->unsignedInteger('role_id');
-
+            $table->engine = 'InnoDB';
             $table->string('model_type');
             $table->unsignedBigInteger($columnNames['model_morph_key']);
-            $table->index([$columnNames['model_morph_key'], 'model_type', ], 'model_has_roles_model_id_model_type_index');
+            $table->index([$columnNames['model_morph_key'], 'model_type',], 'model_has_roles_model_id_model_type_index');
 
             $table->foreign('role_id')
                 ->references('id')
@@ -59,13 +61,13 @@ class CreatePermissionTables extends Migration
                 ->onDelete('cascade');
 
             $table->primary(['role_id', $columnNames['model_morph_key'], 'model_type'],
-                    'model_has_roles_role_model_type_primary');
+                'model_has_roles_role_model_type_primary');
         });
 
         Schema::create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
             $table->unsignedInteger('permission_id');
             $table->unsignedInteger('role_id');
-
+            $table->engine = 'InnoDB';
             $table->foreign('permission_id')
                 ->references('id')
                 ->on($tableNames['permissions'])

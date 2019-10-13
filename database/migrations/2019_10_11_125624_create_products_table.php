@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name',100)->unique();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

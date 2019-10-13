@@ -42,16 +42,20 @@
                             </div>
                             <div class="col-6">
                                 {!! Form::label('encargado', 'Encargado') !!}
-                                {!! Form::text('encargado',null,['class'=> 'form-control']) !!}
+                                {!! Form::select('encargado', $encargados , null, ['class' => 'form-control', 'placeholder' => 'Escoja']) !!}
                             </div>
-                            <div class="col-6 my-4">
-                                <button type="button" class="btn btn-danger" id="cancel-carta" data-dismiss="modal"
-                                        aria-label="Close">
-                                    Cancelar
-                                </button>
-                                {!! Form::submit('Guardar',['class'=> 'btn btn-success', 'id' => 'guardar-carta-datos']) !!}
-                            </div>
+
                         </div>
+
+
+                        <div class="text-center my-4">
+                            <button type="button" class="btn btn-danger" id="cancel-carta" data-dismiss="modal"
+                                    aria-label="Close"> Cancelar
+                            </button>
+                            {!! Form::submit('Guardar',['class'=> 'btn btn-success', 'id' => 'guardar-carta-datos']) !!}
+                        </div>
+
+
                         {!! Form::close() !!}
                     </div>
                 </div>
