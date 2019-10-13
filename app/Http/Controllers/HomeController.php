@@ -29,12 +29,4 @@ class HomeController extends Controller
     {
         return view('index', $this->dataService->getFormData());
     }
-
-    public function listarCartas(Request $request)
-    {
-        $data = $this->dataService->getFormData();
-        $data['cartas'] = Document::all();
-
-        return view('cartas.lista', $data);
-    }
 }

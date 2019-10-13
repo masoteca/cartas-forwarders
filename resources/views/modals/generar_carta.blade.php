@@ -13,7 +13,7 @@
                 <div class="card bg-secondary border-0 mb-0">
                     <div class="card-body px-lg-1 py-lg-1">
 
-                        {!! Form::open(['method'=> 'POST','class' => 'mx-3 mb-3', 'id' => 'form-datos-carta' ,'route' => ['cartas.store']]) !!}
+                        {!! Form::open(['method'=> 'POST','class' => 'mx-3 mb-3', 'id' => 'form-datos-carta' ,'route' => ['document.store']]) !!}
                         <div class="row">
                             <div class="col-6">
                                 {!! Form::label('awb', 'AWB') !!}
@@ -98,7 +98,8 @@
                             cancelButtonText: 'Si! Duplicar datos',
                         }).then((result) => {
                             if (result.value) {
-                                form.trigger('reset')
+                                form.trigger('reset');
+                                window.location.reload();
                             }
                         })
                     },

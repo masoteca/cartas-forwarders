@@ -25,8 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
-    Route::post('document', 'CartasController@store')->name('cartas.store');
-    Route::get('documentos/list', 'HomeController@listarCartas')->name('cartas.list');
-    Route::get('carta/print/{document}', 'PrintsController@printcarta')->name('cartas.print');
+    Route::resource('document', 'CartasController')->except(['show']);
+    Route::get('document/print/{document}', 'PrintsController@printcarta')->name('document.print');
 });
 

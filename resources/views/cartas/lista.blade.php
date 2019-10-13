@@ -28,6 +28,17 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <div class="col-12">
+                            @if (session('status'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('status') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+                        </div>
+
                         <div class="table-responsive">
 
                             <table id="table-cartas-full" class="table align-items-center">
@@ -49,7 +60,7 @@
                                         <td>{{$carta->airline->name}}</td>
                                         <td>{{$carta->destination->country }}</td>
                                         <td>{{$carta->product->name }}</td>
-                                        <td>{{$carta->encargado }}</td>
+                                        <td>{{$carta->encargado->nombre }}</td>
                                         <td>{{$carta->fecha_envio }}</td>
                                         <td class="text-right">
                                             <div class="dropdown">
@@ -63,25 +74,24 @@
                                                 <div
                                                     class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                     <a class="dropdown-item"
-                                                       href="{{ route('cartas.print', $carta) }}">Imprimir Carta</a>
-                                                    @can('user-edit')
+                                                       href="{{ route('document.print', $carta) }}">Imprimir Carta</a>
+
                                                         <a class="dropdown-item"
-                                                           href="{{ route('user.edit', $carta) }}">{{ __('Edit') }}</a>
-                                                    @endcan
-                                                    @can('user-delete')
-                                                        <form action="{{ route('user.destroy', $carta) }}"
+                                                           href="{{ route('document.edit', $carta) }}">{{ __('Edit') }}</a>
+                                                        <form action="{{ route('document.destroy', $carta) }}"
+                                                              id="form-delete-document-{{$carta->id}}"
                                                               method="post">
                                                             @csrf
                                                             @method('delete')
 
                                                             <button type="button" class="dropdown-item"
                                                                     {{--        onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">--}}
-                                                                    onclick="deletecartadata() === true ? this.parentElement.submit() : ''">
+                                                                    onclick="deletecartadata({{$carta->id}})">
                                                                 {{ __('Delete') }}
                                                             </button>
 
                                                         </form>
-                                                    @endcan
+
                                                 </div>
                                             </div>
                                         </td>
@@ -110,7 +120,7 @@
             $('#table-cartas-full').DataTable();
         });
 
-        function deletecartadata() {
+        function deletecartadata(id) {
             Swal.fire({
 
                 text: "Seguro que deseas eliminar este registro?",
@@ -122,7 +132,8 @@
 
             }).then((result) => {
                 if (result.value) {
-                    return true;
+                    let form = $('#form-delete-document-' + id)
+                    form.trigger('submit');
                 }
             })
         }

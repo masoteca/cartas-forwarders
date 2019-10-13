@@ -51,7 +51,7 @@
                                                     <td>{{$carta->airline->name}}</td>
                                                     <td>{{$carta->destination->country }}</td>
                                                     <td>{{$carta->product->name }}</td>
-                                                    <td>{{$carta->encargado }}</td>
+                                                    <td>{{$carta->encargado->nombre }}</td>
                                                     <td class="text-right">
                                                         <div class="dropdown">
                                                             <a class="btn btn-md btn-icon-only text-light bg-gradient-lighter"
@@ -63,25 +63,25 @@
                                                             </a>
                                                             <div
                                                                 class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                                <a class="dropdown-item"
+                                                                   href="{{ route('document.print', $carta) }}">Imprimir Carta</a>
 
-                                                                @can('user-edit')
-                                                                    <a class="dropdown-item"
-                                                                       href="{{ route('user.edit', $carta) }}">{{ __('Edit') }}</a>
-                                                                @endcan
-                                                                @can('user-delete')
-                                                                    <form action="{{ route('user.destroy', $carta) }}"
-                                                                          method="post">
-                                                                        @csrf
-                                                                        @method('delete')
+                                                                <a class="dropdown-item"
+                                                                   href="{{ route('document.edit', $carta) }}">{{ __('Edit') }}</a>
+                                                                <form action="{{ route('document.destroy', $carta) }}"
+                                                                      id="form-delete-document-{{$carta->id}}"
+                                                                      method="post">
+                                                                    @csrf
+                                                                    @method('delete')
 
-                                                                        <button type="button" class="dropdown-item"
-                                                                                {{--        onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">--}}
-                                                                                onclick="deletecartadata() === true ? this.parentElement.submit() : ''">
-                                                                            {{ __('Delete') }}
-                                                                        </button>
+                                                                    <button type="button" class="dropdown-item"
+                                                                            {{--        onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">--}}
+                                                                            onclick="deletecartadata({{$carta->id}})">
+                                                                        {{ __('Delete') }}
+                                                                    </button>
 
-                                                                    </form>
-                                                                @endcan
+                                                                </form>
+
                                                             </div>
                                                         </div>
                                                     </td>
@@ -112,7 +112,7 @@
 @push('js')
     <script>
 
-        function deletecartadata() {
+        function deletecartadata(id) {
             Swal.fire({
 
                 text: "Seguro que deseas eliminar este registro?",
@@ -124,7 +124,8 @@
 
             }).then((result) => {
                 if (result.value) {
-                    return true;
+                    let form = $('#form-delete-document-' + id)
+                    form.trigger('submit');
                 }
             })
         }

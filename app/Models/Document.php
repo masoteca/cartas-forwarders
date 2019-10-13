@@ -40,7 +40,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class Document extends Model
 {
-    protected $fillable = ['awb', 'id_destination', 'iata_code', 'fecha_envio', 'id_product', 'id_airline', 'encargado'];
+    protected $fillable = ['awb', 'id_destination', 'iata_code', 'fecha_envio', 'id_product', 'id_airline', 'rut_encargado'];
 
     public function destination()
     {
@@ -57,4 +57,8 @@ class Document extends Model
         return $this->hasOne(Product::class, 'id', 'id_product');
     }
 
+    public function encargado()
+    {
+        return $this->hasOne(Encargado::class, 'rut', 'rut_encargado');
+    }
 }
