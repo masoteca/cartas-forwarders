@@ -9,18 +9,15 @@
 </head>
 <body>
 <div
-    style="height: 460px; width: 455px; border: 1px solid black;">
-    <img  style="z-index: -1; position: absolute" src="{{asset('images/CARGACONOCIDAIMG.png')}}">
+    style="height: 300px; width: 300px; border: 1px solid black;">
+    <img  style="height: 300px; width: 300px; z-index:-1; position: absolute" src="{{asset('images/CARGACONOCIDAIMG.png')}}">
+    <br>
+    <br>
+
     <br>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+  
     <br>
     <p style="text-align: center"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$carta->id}}</p>
 
