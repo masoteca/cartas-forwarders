@@ -27,5 +27,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('document', 'CartasController')->except(['show']);
     Route::get('document/print/{document}', 'PrintsController@printcarta')->name('document.print');
+    Route::get('document/etiqueta/{document}', 'EtiquetasController@print')->name('etiquetas.print');
 });
 
