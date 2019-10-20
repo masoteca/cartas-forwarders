@@ -13,6 +13,7 @@ class PrintsController extends Controller
     protected $dataService;
     protected $editorService;
 
+
     /**
      * Create a new controller instance.
      *
