@@ -30,6 +30,14 @@ class DatabaseSeeder extends Seeder
                 'name' => 'operator'
             ]);
         }
+
+        if ((new Role)->where('name', 'supervisor')->doesntExist()) {
+            $roleadmin = Role::create([
+                'id' => 3,
+                'name' => 'supervisor'
+            ]);
+        }
+
         if ((new User)->where('email', 'jaime@jaimemazo.com')->doesntExist()) {
             $user = User::create([
                 'name' => 'Administrador',
@@ -37,6 +45,7 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('mazomazo'),
             ]);
         }
+
         $this->call(PermissionTableSeeder::class);
         $permissions = Permission::pluck('id', 'id')->all();
 
