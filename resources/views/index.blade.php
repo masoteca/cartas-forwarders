@@ -27,10 +27,11 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="card shadow">
-                            <div class="card-body">
-                                @foreach( $cartas as $dia => $contenido)
-                                    <div class="table-responsive">
+                        @foreach( $cartas as $dia => $contenido)
+                            <div class="card shadow">
+                                <div class="card-body">
+
+                                    <div class="table">
                                         <h4> {{ \Carbon\Carbon::createFromDate($dia)->format('l')}}  {{ $dia }}</h4>
                                         <table class="table align-items-center">
                                             <thead class="thead-light">
@@ -92,17 +93,11 @@
                                             @endforeach
                                         </table>
                                     </div>
-                                    <hr class="my-2">
-                                    <hr class="my-1">
-                                @endforeach
 
-                            </div>
-                            <div class="card-footer py-4">
-                                <nav class="d-flex justify-content-end" aria-label="...">
 
-                                </nav>
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

@@ -37,7 +37,7 @@
 {{--        @guest()--}}
 {{--            @include('layouts.footers.guest')--}}
 {{--        @endguest--}}
-
+        <script src="{{asset('js/sweetalert.js')}}"></script>
         <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" charset="utf8" src="{{asset('js/datatables.js')}}"></script>
