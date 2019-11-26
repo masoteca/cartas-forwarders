@@ -35,7 +35,7 @@ class PrintsController extends Controller
         $path = resource_path("pdf/{$aerolinea}/cartas.pdf");
         $pdf = new Fpdi();
         $pdf->SetFont('Helvetica');
-        $this->editorService->addnewpagefromsamefile($pdf, $path, 1);
+        /*$this->editorService->addnewpagefromsamefile($pdf, $path, 1);*/
         $fechaEnvio = $model->fecha_envio->format('d/m/Y');
         $encargado = iconv('UTF-8', 'windows-1252', $model->encargado->nombre);
         $producto = iconv('UTF-8', 'windows-1252', $model->product->name);
@@ -45,14 +45,14 @@ class PrintsController extends Controller
         //switch case
         switch ($aerolinea) {
             case 'aeromexico':
-
+/*
                 $pdf->SetXY(100, 58);
                 $pdf->SetFontSize(18);
                 $pdf->Write(12, "{$model->awb} ");
                 $pdf->SetXY(50, 75);
                 $pdf->Write(12, "{$producto} ");
                 $pdf->SetXY(80, 100);
-                $pdf->Write(12, "{$iata} ");
+                $pdf->Write(12, "{$iata} ");*/
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
                 $pdf->SetXY(85, 65);
@@ -110,13 +110,13 @@ class PrintsController extends Controller
                 $pdf->Write(12, "{$model->awb}");
                 break;
             case 'air new zeland':
-                $pdf->SetXY(110, 58);
+              /*  $pdf->SetXY(110, 58);
                 $pdf->SetFontSize(18);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(75, 75);
                 $pdf->Write(12, "{$producto}");
                 $pdf->SetXY(80, 100);
-                $pdf->Write(12, "{$iata}");
+                $pdf->Write(12, "{$iata}");*/
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
                 $pdf->SetFontSize(14);
@@ -167,13 +167,13 @@ class PrintsController extends Controller
                 $pdf->Write(12, "{$fechaEnvio}");
                 break;
             case 'air canada':
-                $pdf->SetXY(110, 58);
+             /*   $pdf->SetXY(110, 58);
                 $pdf->SetFontSize(18);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(75, 75);
                 $pdf->Write(12, "{$producto}");
                 $pdf->SetXY(80, 100);
-                $pdf->Write(12, "{$iata}");
+                $pdf->Write(12, "{$iata}");*/
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
                 $pdf->SetXY(85, 65);
@@ -231,13 +231,13 @@ class PrintsController extends Controller
                 break;
             case 'british':
 
-                $pdf->SetXY(100, 58);
+            /*    $pdf->SetXY(100, 58);
                 $pdf->SetFontSize(18);
                 $pdf->Write(12, "{$model->awb} ");
                 $pdf->SetXY(50, 75);
                 $pdf->Write(12, "{$producto} ");
                 $pdf->SetXY(80, 100);
-                $pdf->Write(12, "{$iata} ");
+                $pdf->Write(12, "{$iata} ");*/
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
                 $pdf->SetXY(85, 65);
@@ -261,13 +261,13 @@ class PrintsController extends Controller
                 break;
             case 'cathay':
 
-                $pdf->SetXY(110, 58);
+             /*   $pdf->SetXY(110, 58);
                 $pdf->SetFontSize(18);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(75, 75);
                 $pdf->Write(12, "{$producto}");
                 $pdf->SetXY(80, 100);
-                $pdf->Write(12, "{$iata}");
+                $pdf->Write(12, "{$iata}");*/
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
                 $pdf->SetFontSize(14);
@@ -321,14 +321,14 @@ class PrintsController extends Controller
                 break;
 
             case 'emirates':
-
+/*
                 $pdf->SetXY(100, 58);
                 $pdf->SetFontSize(18);
                 $pdf->Write(12, "{$model->awb} ");
                 $pdf->SetXY(50, 75);
                 $pdf->Write(12, "{$producto} ");
                 $pdf->SetXY(80, 100);
-                $pdf->Write(12, "{$iata} ");
+                $pdf->Write(12, "{$iata} ");*/
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
                 $pdf->SetXY(85, 65);
@@ -386,13 +386,13 @@ class PrintsController extends Controller
 
                 break;
             case 'alitalia':
-                $pdf->SetXY(110, 58);
+            /*    $pdf->SetXY(110, 58);
                 $pdf->SetFontSize(18);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(75, 75);
                 $pdf->Write(12, "{$producto}");
                 $pdf->SetXY(80, 100);
-                $pdf->Write(12, "{$iata}");
+                $pdf->Write(12, "{$iata}");*/
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
                 $pdf->SetXY(40, 59);
@@ -444,13 +444,13 @@ class PrintsController extends Controller
 
                 break;
             case 'atlas':
-                $pdf->SetXY(110, 58);
+            /*    $pdf->SetXY(110, 58);
                 $pdf->SetFontSize(18);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(75, 75);
                 $pdf->Write(12, "{$producto}");
                 $pdf->SetXY(80, 100);
-                $pdf->Write(12, "{$iata}");
+                $pdf->Write(12, "{$iata}");*/
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
                 $pdf->SetXY(85, 65);
