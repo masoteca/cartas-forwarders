@@ -68,18 +68,31 @@
 </div>
 
 @push('js')
-    <script src="{{asset('js/sweetalert.js')}}"></script>
+
     <script>
         $(document).ready(() => {
             $('#destination').on('change', function () {
                 $('#iata_code').val(this.value)
-            })
+            });
             $('#airline').on('change', function () {
-                $('#awb').val(this.value)
-            })
+                $('#awb').val(this.value + '-')
+            });
             $('#cancel-carta').on('click', function () {
                 $('#form-datos-carta').trigger("reset");
-            })
+            });
+            $('#awb').on('change', function () {
+                let tempval = this.value;
+                let splited = tempval.split('-');
+                if (splited[1] == void (0)) {
+                    this.value = $('#airline').val()+ '-';
+                    $('#awb').addClass('is-invalid');
+                } else if (splited[1].length > 8) {
+                    this.value = $('#airline').val()+ '-';
+                    $('#awb').addClass('is-invalid');
+                } else {
+                    $('#awb').removeClass('is-invalid')
+                }
+            });
             $('#form-datos-carta').on('submit', function (e) {
                 e.preventDefault();
                 var form = $(this);
@@ -90,6 +103,7 @@
                     url: url,
                     data: form.serialize(), // serializes the form's elements.
                     success: function (data) {
+                        $('#modal-carta').modal('hide');
                         Swal.fire({
                             title: 'Resgistro Creado',
                             text: "Deseas Duplicar la información?",
@@ -103,6 +117,8 @@
                             if (result.value) {
                                 form.trigger('reset');
                                 window.location.reload();
+                            }else{
+                                $('#modal-carta').modal('show');
                             }
                         })
                     },
