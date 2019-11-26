@@ -15,6 +15,12 @@
 
                         {!! Form::open(['method'=> 'POST','class' => 'mx-3 mb-3', 'id' => 'form-datos-carta' ,'route' => ['document.store']]) !!}
                         <div class="row">
+
+                            <div class="col-6">
+                                {!! Form::label('airline', 'Aerolinea') !!}
+                                {!! Form::select('airline', $airlines , null, ['class' => 'form-control', 'placeholder' => 'Escoja']) !!}
+                            </div>
+
                             <div class="col-6">
                                 {!! Form::label('awb', 'AWB') !!}
                                 {!! Form::text('awb',null,['class'=> 'form-control']) !!}
@@ -36,10 +42,7 @@
                                 {!! Form::label('product', 'Producto') !!}
                                 {!! Form::select('product', $products , null, ['class' => 'form-control', 'placeholder' => 'Escoja']) !!}
                             </div>
-                            <div class="col-6">
-                                {!! Form::label('airline', 'Aerolinea') !!}
-                                {!! Form::select('airline', $airlines , null, ['class' => 'form-control', 'placeholder' => 'Escoja']) !!}
-                            </div>
+
                             <div class="col-6">
                                 {!! Form::label('encargado', 'Encargado') !!}
                                 {!! Form::select('encargado', $encargados , null, ['class' => 'form-control', 'placeholder' => 'Escoja']) !!}
