@@ -31,7 +31,9 @@
 
         <div class="main-content">
             @include('layouts.navbars.navbar')
+            @include('layouts.partials.header')
             @yield('content')
+            @include('layouts.footers.auth')
         </div>
 
 {{--        @guest()--}}

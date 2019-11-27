@@ -41,9 +41,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Document extends Model
 {
     protected $fillable = ['awb', 'id_destination', 'iata_code', 'fecha_envio', 'id_product', 'id_airline', 'rut_encargado'];
-    protected $dates = [
-        'fecha_envio',
-    ];
+
     public function destination()
     {
         return $this->hasOne(Destination::class, 'id', 'id_destination');

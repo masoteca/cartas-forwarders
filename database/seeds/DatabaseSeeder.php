@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         }
 
         if ((new Role)->where('name', 'supervisor')->doesntExist()) {
-            $roleadmin = Role::create([
+            $rolesuper = Role::create([
                 'id' => 3,
                 'name' => 'supervisor'
             ]);
@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
         if ((new User)->where('email', 'jaime@jaimemazo.com')->doesntExist()) {
             $user = User::create([
                 'name' => 'Administrador',
-                'email' => 'jaime@jaimemazo.com',
+                'email' => 'jaime@innovacodespa.com',
                 'password' => bcrypt('mazomazo'),
             ]);
         }
@@ -49,17 +49,24 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionTableSeeder::class);
         $permissions = Permission::pluck('id', 'id')->all();
 
+        $permisionsupervisor = Permission::where('name', 'like', 'encargado%')
+            ->orWhere('name', 'like', 'producto%')->get()->pluck('id', 'id');
 
+        $rolesuper->syncPermissions($permisionsupervisor);
         $roleadmin->syncPermissions($permissions);
         $user->assignRole([$roleadmin->id]);
+
         $this->call(AirlinesTableSeeder::class);
         $this->call(DestinationsTableSeeder::class);
-        $this->call(ProductsTableSeeder::class);
-        if ((new Encargado)->where('rut', '24544936-4')->doesntExist()) {
-            Encargado::create([
-                'rut' => '24544936-4',
-                'nombre' => 'jaime mazo',
-            ]);
+
+        if (env('APP_ENV') == 'local' || env('APP_ENV') == 'develepment') {
+            $this->call(ProductsTableSeeder::class);
+            if ((new Encargado)->where('rut', '24544936-4')->doesntExist()) {
+                Encargado::create([
+                    'rut' => '24544936-4',
+                    'nombre' => 'jaime mazo',
+                ]);
+            }
         }
     }
 }

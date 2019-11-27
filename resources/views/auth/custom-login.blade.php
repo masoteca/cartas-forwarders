@@ -15,7 +15,7 @@
         </div>
         <form id="login_form" name="login" method="post" action="{{route('login')}}">
 
-            <img id="login_logo" src="{{asset('images/logo_tp.png')}}"><br>
+            <img id="login_logo" src="{{asset('images/LogoInnovaCodeIC.png')}}"><br>
             @csrf
             <h1>Login</h1><br>
 

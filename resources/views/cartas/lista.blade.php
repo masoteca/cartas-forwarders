@@ -2,7 +2,6 @@
 
 
 @section('content')
-    @include('layouts.partials.header')
 
     <div class="container-fluid mt--7">
         <div class="row">

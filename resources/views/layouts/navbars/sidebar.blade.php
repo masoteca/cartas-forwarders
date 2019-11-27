@@ -7,7 +7,7 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            <img src="{{asset('images/logo_tp.png')}}" class="navbar-brand-img" alt="...">
+            <img src="{{asset('images/LogoInnovaCodeIC.png')}}" class="navbar-brand-img" alt="...">
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
@@ -38,7 +38,7 @@
             </li>
         </ul>
         <!-- Collapse -->
-        <div class="collapse navbar-collapse navbar-dark" id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse navbar-dark my--3" id="sidenav-collapse-main">
             <!-- Collapse header -->
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
@@ -59,7 +59,7 @@
             </div>
             <!-- Form -->
             <!-- Navigation -->
-            <ul class="navbar-nav">
+            <ul class="navbar-nav my--3">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">
                         <i class="ni ni-tv-2"></i> {{ __('Inicio') }}
@@ -70,6 +70,20 @@
                         <i class="ni ni-bullet-list-67 "></i>{{ __('Listado de cartas') }}
                     </a>
                 </li>
+                @can('producto-list')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('productos.index') }}">
+                            <i class="ni ni-bullet-list-67"></i>{{ __('Products') }}
+                        </a>
+                    </li>
+                @endcan
+                @can('encargado-list')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('encargados.index') }}">
+                            <i class="ni ni-bullet-list-67"></i>{{ __('Encargados') }}
+                        </a>
+                    </li>
+                @endcan
                 @can('user-list')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.index') }}">

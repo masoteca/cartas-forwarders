@@ -1,11 +1,6 @@
-@extends('layouts.app', ['title' => __('User Profile')])
+@extends('layouts.app')
 
 @section('content')
-    @include('users.partials.header', [
-        'title' => __('Hello') . ' '. auth()->user()->name,
-        'description' => __('Estes es tu perfil, en esta seccion puedes administrar tus datos de usuario como correo, contraseña y nombre'),
-        'class' => 'col-lg-7'
-    ])
     <div class="container-fluid mt--7">
         <div class="row">
 
@@ -111,6 +106,5 @@
             </div>
         </div>
 
-        @include('layouts.footers.auth')
     </div>
 @endsection

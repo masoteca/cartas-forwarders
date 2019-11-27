@@ -2,7 +2,6 @@
 
 @section('content')
     {{--    @include('layouts.headers.cards')--}}
-    @include('layouts.partials.header')
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl-12 mb-5 mb-xl-0">
@@ -104,7 +103,7 @@
         </div>
     </div>
     @include('modals.generar_carta')
-    @include('layouts.footers.auth')
+
 @endsection
 
 @push('js')

@@ -36,7 +36,7 @@ class PrintsController extends Controller
         $pdf = new Fpdi();
         $pdf->SetFont('Helvetica');
         /*$this->editorService->addnewpagefromsamefile($pdf, $path, 1);*/
-        $fechaEnvio = $model->fecha_envio->format('d/m/Y');
+        $fechaEnvio = date('d/m/Y' , strtotime($model->fecha_envio));
         $encargado = iconv('UTF-8', 'windows-1252', $model->encargado->nombre);
         $producto = iconv('UTF-8', 'windows-1252', $model->product->name);
         $iata = $model->destination->code;
@@ -508,6 +508,7 @@ class PrintsController extends Controller
                 $pdf->Write(12, "{$model->awb}");
                 break;
             default:
+                return "<h2> Error</h2> <br> <p>Servicio No Disponible";
                 break;
         }
 

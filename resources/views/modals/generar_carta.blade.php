@@ -23,7 +23,7 @@
 
                             <div class="col-6">
                                 {!! Form::label('awb', 'AWB') !!}
-                                {!! Form::text('awb',null,['class'=> 'form-control']) !!}
+                                {!! Form::text('awb',null,['class'=> 'form-control', 'maxlength' => 12]) !!}
                             </div>
                             <div class="col-6">
                                 {!! Form::label('destination', 'Destination') !!}
@@ -83,7 +83,7 @@
             $('#awb').on('change', function () {
                 let tempval = this.value;
                 let splited = tempval.split('-');
-                if (splited[1] == void (0)) {
+                if (splited[1] == void (0) || splited[0] == void (0) || splited[0] == '') {
                     this.value = $('#airline').val()+ '-';
                     $('#awb').addClass('is-invalid');
                 } else if (splited[1].length > 8) {
@@ -95,38 +95,49 @@
             });
             $('#form-datos-carta').on('submit', function (e) {
                 e.preventDefault();
-                var form = $(this);
-                var url = form.attr('action');
+                if(
+                    $('#airline').val() == '' ||
+                    $('#awb').val() == '' ||
+                    $('#destination').val() == '' ||
+                    $('#iata_code').val() == '' ||
+                    $('#fecha_envio').val() == '' ||
+                    $('#product').val() == '' ||
+                    $('#encargado').val() == ''
+                ){
+                    alert('Falta llenar campos del formulario');
+                }else {
+                    var form = $(this);
+                    var url = form.attr('action');
 
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: form.serialize(), // serializes the form's elements.
-                    success: function (data) {
-                        $('#modal-carta').modal('hide');
-                        Swal.fire({
-                            title: 'Resgistro Creado',
-                            text: "Deseas Duplicar la información?",
-                            type: 'success',
-                            showCancelButton: true,
-                            confirmButtonColor: '#d33',
-                            cancelButtonColor: '#3085d6',
-                            confirmButtonText: 'No duplicar datos',
-                            cancelButtonText: 'Si! Duplicar datos',
-                        }).then((result) => {
-                            if (result.value) {
-                                form.trigger('reset');
-                                window.location.reload();
-                            }else{
-                                $('#modal-carta').modal('show');
-                            }
-                        })
-                    },
-                    error: function (error) {
-                        alert(error)
-                    }
-                });
-
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: form.serialize(), // serializes the form's elements.
+                        success: function (data) {
+                            $('#modal-carta').modal('hide');
+                            Swal.fire({
+                                title: 'Resgistro Creado',
+                                text: "Deseas Duplicar la información?",
+                                type: 'success',
+                                showCancelButton: true,
+                                confirmButtonColor: '#d33',
+                                cancelButtonColor: '#3085d6',
+                                confirmButtonText: 'No duplicar datos',
+                                cancelButtonText: 'Si! Duplicar datos',
+                            }).then((result) => {
+                                if (result.value) {
+                                    form.trigger('reset');
+                                    window.location.reload();
+                                } else {
+                                    $('#modal-carta').modal('show');
+                                }
+                            })
+                        },
+                        error: function (error) {
+                            console.error(error)
+                        }
+                    });
+                }
             })
         })
     </script>

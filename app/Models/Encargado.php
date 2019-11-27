@@ -23,4 +23,5 @@ use Illuminate\Database\Eloquent\Model;
 class Encargado extends Model
 {
     //
+    protected $fillable = ['nombre','rut'];
 }

@@ -1,7 +1,6 @@
-@extends('layouts.app', ['title' => __('User Management')])
+@extends('layouts.app')
 
 @section('content')
-    @include('layouts.partials.header')
 
     <div class="container-fluid mt--7">
         <div class="row">
@@ -72,6 +71,6 @@
             </div>
         </div>
 
-        @include('layouts.footers.auth')
+
     </div>
 @endsection
