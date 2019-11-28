@@ -111,6 +111,7 @@
                     var formData = $("#form-datos-carta").serialize();
                     $.ajax({
                         type: "POST",
+                        url: '{{route('document.store')}}',
                         data: formData,
                         success: function (msg) {
 
