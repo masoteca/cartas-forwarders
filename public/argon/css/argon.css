@@ -22191,3 +22191,7 @@ table.dataTable td {
   }
 }
 
+div label.is-invalid {
+  color: #f5365c;
+}
+

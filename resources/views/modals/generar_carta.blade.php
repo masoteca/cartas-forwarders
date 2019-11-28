@@ -18,34 +18,34 @@
 
                             <div class="col-6">
                                 {!! Form::label('airline', 'Aerolinea') !!}
-                                {!! Form::select('airline', $airlines , null, ['class' => 'form-control', 'placeholder' => 'Escoja']) !!}
+                                {!! Form::select('airline', $airlines , null, ['class' => 'form-control', 'required', 'placeholder' => 'Escoja']) !!}
                             </div>
 
                             <div class="col-6">
                                 {!! Form::label('awb', 'AWB') !!}
-                                {!! Form::text('awb',null,['class'=> 'form-control', 'maxlength' => 12]) !!}
+                                {!! Form::text('awb',null,['class'=> 'form-control', 'required', 'maxlength' => 12]) !!}
                             </div>
                             <div class="col-6">
                                 {!! Form::label('destination', 'Destination') !!}
-                                {!! Form::select('destination', $destinations , null, ['class' => 'form-control', 'placeholder' => 'Escoja']) !!}
+                                {!! Form::select('destination', $destinations , null, ['class' => 'form-control', 'required', 'placeholder' => 'Escoja']) !!}
 
                             </div>
                             <div class="col-6">
                                 {!! Form::label('iata_code', 'Codigo IATA') !!}
-                                {!! Form::text('iata_code',null,['class'=> 'form-control']) !!}
+                                {!! Form::text('iata_code',null,['class' => 'form-control', 'required']) !!}
                             </div>
                             <div class="col-6">
                                 {!! Form::label('fecha_envio', 'Fecha del día') !!}
-                                {!! Form::date('fecha_envio',null,['class'=> 'form-control']) !!}
+                                {!! Form::date('fecha_envio',null,['class' => 'form-control', 'required']) !!}
                             </div>
                             <div class="col-6">
                                 {!! Form::label('product', 'Producto') !!}
-                                {!! Form::select('product', $products , null, ['class' => 'form-control', 'placeholder' => 'Escoja']) !!}
+                                {!! Form::select('product', $products , null, ['class' => 'form-control', 'required', 'placeholder' => 'Escoja']) !!}
                             </div>
 
                             <div class="col-6">
                                 {!! Form::label('encargado', 'Encargado') !!}
-                                {!! Form::select('encargado', $encargados , null, ['class' => 'form-control', 'placeholder' => 'Escoja']) !!}
+                                {!! Form::select('encargado', $encargados , null, ['class' => 'form-control', 'required', 'placeholder' => 'Escoja']) !!}
                             </div>
 
                         </div>
@@ -68,7 +68,7 @@
 </div>
 
 @push('js')
-
+    <script src="{{asset('js/jquery.validate.js')}}" type="application/javascript"></script>
     <script>
         $(document).ready(() => {
             $('#destination').on('change', function () {
@@ -84,62 +84,64 @@
                 let tempval = this.value;
                 let splited = tempval.split('-');
                 if (splited[1] == void (0) || splited[0] == void (0) || splited[0] == '') {
-                    this.value = $('#airline').val()+ '-';
+                    this.value = $('#airline').val() + '-';
                     $('#awb').addClass('is-invalid');
                 } else if (splited[1].length > 8) {
-                    this.value = $('#airline').val()+ '-';
+                    this.value = $('#airline').val() + '-';
                     $('#awb').addClass('is-invalid');
                 } else {
                     $('#awb').removeClass('is-invalid')
                 }
             });
-            $('#form-datos-carta').on('submit', function (e) {
-                e.preventDefault();
-                if(
-                    $('#airline').val() == '' ||
-                    $('#awb').val() == '' ||
-                    $('#destination').val() == '' ||
-                    $('#iata_code').val() == '' ||
-                    $('#fecha_envio').val() == '' ||
-                    $('#product').val() == '' ||
-                    $('#encargado').val() == ''
-                ){
-                    alert('Falta llenar campos del formulario');
-                }else {
-                    var form = $(this);
-                    var url = form.attr('action');
 
+            $("#form-datos-carta").validate({
+
+                messages: {
+                    'destination': "El destino es requerido",
+                    'airline': "aerolinea es requerida",
+                    'awb': "la AWB es requerida",
+                    'iata_code': "El codigo IATA es requerido",
+                    'fecha_envio': "La fecha es requerida",
+                    'product': "Indique el producto",
+                    'encargado': "Indique un encargado"
+                },
+                errorClass: 'is-invalid',
+                validClass: '',
+                submitHandler: function (form) {
+                    var formData = $("#form-datos-carta").serialize();
                     $.ajax({
                         type: "POST",
-                        url: url,
-                        data: form.serialize(), // serializes the form's elements.
-                        success: function (data) {
-                            $('#modal-carta').modal('hide');
-                            Swal.fire({
-                                title: 'Resgistro Creado',
-                                text: "Deseas Duplicar la información?",
-                                type: 'success',
-                                showCancelButton: true,
-                                confirmButtonColor: '#d33',
-                                cancelButtonColor: '#3085d6',
-                                confirmButtonText: 'No duplicar datos',
-                                cancelButtonText: 'Si! Duplicar datos',
-                            }).then((result) => {
-                                if (result.value) {
-                                    form.trigger('reset');
-                                    window.location.reload();
-                                } else {
-                                    $('#modal-carta').modal('show');
-                                }
-                            })
-                        },
-                        error: function (error) {
-                            console.error(error)
+                        data: formData,
+                        success: function (msg) {
+
+                            if (msg.carta) {
+
+                                $('#modal-carta').modal('hide');
+                                Swal.fire({
+                                    title: 'Resgistro Creado',
+                                    text: "Deseas Duplicar la información?",
+                                    type: 'success',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#d33',
+                                    cancelButtonColor: '#3085d6',
+                                    confirmButtonText: 'No duplicar datos',
+                                    cancelButtonText: 'Si! Duplicar datos',
+                                }).then((result) => {
+                                    if (result.value) {
+                                        $("#form-datos-carta").trigger("reset");
+                                        window.location.reload();
+                                    } else {
+                                        $('#modal-carta').modal('show');
+                                    }
+                                })
+                            }
                         }
                     });
                 }
-            })
+            });
         })
+
+
     </script>
 
 @endpush
