@@ -63,12 +63,9 @@
                                                             </a>
                                                             <div
                                                                 class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                                <a class="dropdown-item"
-                                                                   href="{{ route('document.print', $carta) }}">Imprimir
-                                                                    Carta</a>
-                                                                <a class="dropdown-item"
-                                                                   href="{{ route('etiquetas.print', $carta) }}">Imprimir
-                                                                    Etiqueta</a>
+                                                                <a class="dropdown-item" target="_blank"
+                                                                   href="{{ route('document.print', $carta) }}">Imprimir Carta</a>
+                                                                {{-- <a class="dropdown-item"  href="{{ route('etiquetas.print', $carta) }}">Imprimir  Etiqueta</a>--}}
                                                                 <a class="dropdown-item"
                                                                    href="{{ route('document.edit', $carta) }}">{{ __('Edit') }}</a>
                                                                 <form action="{{ route('document.destroy', $carta) }}"

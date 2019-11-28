@@ -35,13 +35,25 @@ class PrintsController extends Controller
         $path = resource_path("pdf/{$aerolinea}/cartas.pdf");
         $pdf = new Fpdi();
         $pdf->SetFont('Helvetica');
-        /*$this->editorService->addnewpagefromsamefile($pdf, $path, 1);*/
+        $this->editorService->addnewpagefromsamefile($pdf, resource_path("pdf/anexoh.pdf"), 1);
         $fechaEnvio = date('d/m/Y' , strtotime($model->fecha_envio));
         $encargado = iconv('UTF-8', 'windows-1252', $model->encargado->nombre);
         $producto = iconv('UTF-8', 'windows-1252', $model->product->name);
         $iata = $model->destination->code;
         $pais = iconv('UTF-8', 'windows-1252', $model->destination->country);
 
+
+        //Escribir informacion de anexo H
+        $pdf->SetXY(110, 45);
+        $pdf->SetFontSize(18);
+        $pdf->Write(12, "{$model->awb} ");
+        $pdf->SetFont('Helvetica','B',24);
+        $pdf->SetXY(95, 60);
+        $pdf->Write(12, " {$producto} ");
+
+        $pdf->SetXY(73, 83);
+        $pdf->Write(12, " {$iata} ");
+        $pdf->SetFont('Helvetica','',18);
         //switch case
         switch ($aerolinea) {
             case 'aeromexico':

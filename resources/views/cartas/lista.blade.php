@@ -72,25 +72,24 @@
                                                 </a>
                                                 <div
                                                     class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <a class="dropdown-item"
+                                                    <a class="dropdown-item" target="_blank"
                                                        href="{{ route('document.print', $carta) }}">Imprimir Carta</a>
+                                                    {{--<a class="dropdown-item" href="{{ route('etiquetas.print', $carta) }}">Imprimir Etiqueta</a>--}}
                                                     <a class="dropdown-item"
-                                                       href="{{ route('etiquetas.print', $carta) }}">Imprimir Etiqueta</a>
-                                                        <a class="dropdown-item"
-                                                           href="{{ route('document.edit', $carta) }}">{{ __('Edit') }}</a>
-                                                        <form action="{{ route('document.destroy', $carta) }}"
-                                                              id="form-delete-document-{{$carta->id}}"
-                                                              method="post">
-                                                            @csrf
-                                                            @method('delete')
+                                                       href="{{ route('document.edit', $carta) }}">{{ __('Edit') }}</a>
+                                                    <form action="{{ route('document.destroy', $carta) }}"
+                                                          id="form-delete-document-{{$carta->id}}"
+                                                          method="post">
+                                                        @csrf
+                                                        @method('delete')
 
-                                                            <button type="button" class="dropdown-item"
-                                                                    {{--        onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">--}}
-                                                                    onclick="deletecartadata({{$carta->id}})">
-                                                                {{ __('Delete') }}
-                                                            </button>
+                                                        <button type="button" class="dropdown-item"
+                                                                {{--        onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">--}}
+                                                                onclick="deletecartadata({{$carta->id}})">
+                                                            {{ __('Delete') }}
+                                                        </button>
 
-                                                        </form>
+                                                    </form>
 
                                                 </div>
                                             </div>
