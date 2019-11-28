@@ -48,7 +48,7 @@ class PrintsController extends Controller
         $pdf->SetFontSize(18);
         $pdf->Write(12, "{$model->awb} ");
         $pdf->SetFont('Helvetica','B',24);
-        $pdf->SetXY(95, 60);
+        $pdf->SetXY(73, 60);
         $pdf->Write(12, " {$producto} ");
 
         $pdf->SetXY(73, 83);
