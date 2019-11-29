@@ -241,7 +241,6 @@ class PrintsController extends Controller
                 $pdf->SetXY(60, 155);
                 $pdf->Write(12, "{$model->awb}");
                 break;
-
             case 'british':
 
                 $pdf->SetXY(100, 58);
@@ -272,7 +271,6 @@ class PrintsController extends Controller
                 $pdf->SetXY(85, 158);
                 $pdf->Write(12, "{$model->encargado->nombre}");
                 break;
-
             case 'cathay':
 
                 $pdf->SetXY(110, 58);
@@ -333,7 +331,6 @@ class PrintsController extends Controller
                 $pdf->SetXY(45, 211);
                 $pdf->Write(12, "{$model->fecha_envio}");
                 break;
-
             case 'emirates':
 
                 $pdf->SetXY(100, 58);
@@ -399,7 +396,6 @@ class PrintsController extends Controller
                 /**Preguntar a roberto**/
 
                 break;
-
             case 'alitalia':
                 $pdf->SetXY(110, 58);
                 $pdf->SetFontSize(18);
@@ -457,7 +453,6 @@ class PrintsController extends Controller
                 $pdf->SetXY(75, 167);
                 $pdf->Write(12, "{$model->fecha_envio}");
                 break;
-
             case 'atlas':
                 $pdf->SetXY(110, 58);
                 $pdf->SetFontSize(18);
@@ -522,7 +517,6 @@ class PrintsController extends Controller
                 $pdf->SetXY(62, 148);
                 $pdf->Write(12, "{$model->awb}");
                 break;
-
             case 'etihad':
 
                 $pdf->SetFontSize(18);
@@ -588,7 +582,6 @@ class PrintsController extends Controller
                 $pdf->SetXY(62, 148);
                 $pdf->Write(12, "{$model->awb}");
                 break;
-
             case 'iberia':
                 $pdf->SetFontSize(18);
                 $pdf->SetXY(110, 58);
@@ -639,7 +632,6 @@ class PrintsController extends Controller
                 $pdf->SetXY(62, 148);
                 $pdf->Write(12, "{$model->awb}");
                 break;
-
             case 'lufthansa':
 
                 $pdf->SetFontSize(18);
@@ -700,7 +692,6 @@ class PrintsController extends Controller
                 $pdf->SetXY(42, 216.5);
                 $pdf->Write(12, "{$model->fecha_envio}");
                 break;
-
             case 'korean':
 
                 $pdf->SetXY(110, 58);
@@ -774,7 +765,6 @@ class PrintsController extends Controller
                 $pdf->SetXY(50, 210.8);
                 $pdf->Write(12, "{$model->fecha_envio}");
                 break;
-
             case 'klm':
 
                 $pdf->SetXY(110, 58);
@@ -842,7 +832,6 @@ class PrintsController extends Controller
                 $pdf->SetXY(62, 148);
                 $pdf->Write(12, "{$model->awb}");
                 break;
-
             case 'gol airline airline':
                 $pdf->SetXY(110, 58);
                 $pdf->SetFontSize(18);
@@ -893,7 +882,6 @@ class PrintsController extends Controller
                 $pdf->Write(12, "{$model->awb}");
 
                 break;
-
             case 'latam':
                 $pdf->SetXY(110, 58);
                 $pdf->SetFontSize(18);
@@ -920,7 +908,6 @@ class PrintsController extends Controller
                 $pdf->SetXY(44, 166);
                 $pdf->Write(12, "{$model->fecha_envio}");
                 break;
-
             case 'mercury':
             $pdf->SetXY(110, 58);
             $pdf->SetFontSize(18);
@@ -972,7 +959,6 @@ class PrintsController extends Controller
             $pdf->Write(12, "{$model->fecha_envio}");
 
             break;
-
             case 'qantas':
 
 
@@ -1025,8 +1011,8 @@ class PrintsController extends Controller
                 $pdf->SetXY(80, 100);
                 $pdf->Write(12, "{$model->destination->code}");
                 break;
-                
             default:
+                return "<h2>Error</h2> <br> <p>Servicio No disponible</p>";
                 break;
         }
 
