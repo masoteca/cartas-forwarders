@@ -39,11 +39,17 @@ class DatabaseSeeder extends Seeder
         }
 
         if ((new User)->where('email', 'jaime@jaimemazo.com')->doesntExist()) {
-            $user = User::create([
+            $user = array( User::create([
                 'name' => 'Administrador',
                 'email' => 'jaime@innovacodespa.com',
                 'password' => bcrypt('mazomazo'),
-            ]);
+            ]),
+                User::create([
+                    'name' => 'Administrador',
+                    'email' => 'smunoz@innovacodespa.com',
+                    'password' => bcrypt('innovacodespa2019'),
+                ])
+            );
         }
 
         $this->call(PermissionTableSeeder::class);
