@@ -43,7 +43,6 @@ class PrintsController extends Controller
         $iata = $model->destination->code;
         $pais = iconv('UTF-8', 'windows-1252', $model->destination->country);
 
-
         //Escribir informacion de anexo H
         $pdf->SetXY(110, 45);
         $pdf->SetFontSize(18);
@@ -54,25 +53,18 @@ class PrintsController extends Controller
         $pdf->SetXY(73, 83);
         $pdf->Write(12, " {$iata} ");
         $pdf->SetFont('Helvetica', '', 18);
-        //switch case
+
+        //switch case por aerolinea
         switch ($aerolinea) {
 
             case 'aeromexico':
-        /*
-                        $pdf->SetXY(100, 58);
-                        $pdf->SetFontSize(18);
-                        $pdf->Write(12, "{$model->awb} ");
-                        $pdf->SetXY(50, 75);
-                        $pdf->Write(12, "{$producto} ");
-                        $pdf->SetXY(80, 100);
-                        $pdf->Write(12, "{$iata} ");*/
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
                 $pdf->SetFontSize(14);
                 $pdf->SetXY(85, 65.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(50, 76.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(84, 100);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(48, 211);
@@ -83,7 +75,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(53, 67.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(53, 77.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(60, 145.5);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(60, 155.5);
@@ -105,7 +97,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(62, 60.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(150, 60.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(40, 224);
                 $pdf->Write(12, "{$fechaEnvio}");
 
@@ -121,12 +113,12 @@ class PrintsController extends Controller
                 $pdf->SetXY(98, 228);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(98, 248);
-                $pdf->Write(12, "{$model->encargado->rut}");
+                $pdf->Write(12, "{$rutEncargado}");
                 $pdf->SetXY(160, 253);
                 $pdf->Write(12, "{$fechaEnvio}");
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 7);
-                $pdf->SetXY(45, 128);
+                $pdf->SetXY(40, 128.5);
                 $pdf->Write(12, "{$fechaEnvio}");
                 $pdf->SetXY(60, 148);
                 $pdf->Write(12, "{$model->awb}");
@@ -141,7 +133,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(53, 45);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(53, 55);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(60, 128);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(60, 138);
@@ -161,7 +153,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(84, 65);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(50, 77);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(82, 100);
                 $pdf->SetFontSize(14);
                 $pdf->Write(12, "{$encargado}");
@@ -172,7 +164,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(70, 41);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(170, 41);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(45, 210);
                 $pdf->Write(12, "{$fechaEnvio}");
 
@@ -180,7 +172,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(62, 67);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(160, 67);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(67, 164);
                 $pdf->Write(12, "{$fechaEnvio}");
                 break;
@@ -192,7 +184,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(85, 65.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(50, 76.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(84, 100);
                 $pdf->SetFontSize(14);
                 $pdf->Write(12, "{$encargado}");
@@ -204,7 +196,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(53, 67.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(53, 77.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(60, 145.5);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(60, 155.5);
@@ -226,7 +218,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(62, 60.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(150, 60.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(40, 219);
                 $pdf->Write(12, "{$fechaEnvio}");
 
@@ -242,7 +234,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(98, 238);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(98, 258);
-                $pdf->Write(12, "{$model->encargado->rut}");
+                $pdf->Write(12, "{$rutEncargado}");
                 $pdf->SetXY(160, 262);
                 $pdf->Write(12, "{$fechaEnvio}");
 
@@ -259,10 +251,10 @@ class PrintsController extends Controller
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
                 $pdf->SetXY(85, 65);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(50, 77);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(82, 100);
                 $pdf->SetFontSize(14);
                 $pdf->Write(12, "{$encargado}");
@@ -277,6 +269,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(85, 158);
                 $pdf->Write(12, "{$encargado}");
                 break;
+
             case 'cathay':
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
@@ -299,7 +292,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(57, 53.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(162, 53.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(40, 216.5);
                 $pdf->Write(12, "{$fechaEnvio}");
 
@@ -308,7 +301,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(53, 53);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(53, 62.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(60, 135.5);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(60, 145.5);
@@ -323,7 +316,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(80, 65.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(45, 77);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(80, 100);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(45, 211);
@@ -337,7 +330,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(85, 65.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(50, 77);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(90, 99.5);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(50, 204.5);
@@ -348,7 +341,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(53, 53);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(53, 62.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(60, 135.5);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(60, 145.5);
@@ -363,14 +356,14 @@ class PrintsController extends Controller
                 $pdf->SetXY(57, 61);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(57, 69);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 5);
                 $pdf->SetFontSize(12);
                 $pdf->SetXY(57, 47.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(166, 47.3);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(40, 212.4);
                 $pdf->Write(12, "{$fechaEnvio}");
 
@@ -395,7 +388,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(35, 60);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(35, 75);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(40, 138);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(40, 148);
@@ -417,7 +410,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(85, 65);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(50, 77);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(82, 100);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(45, 211);
@@ -428,7 +421,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(58, 53.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(156, 53.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(40, 216.5);
                 $pdf->Write(12, "{$fechaEnvio}");
 
@@ -440,6 +433,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(75, 167);
                 $pdf->Write(12, "{$fechaEnvio}");
                 break;
+
             case 'atlas':
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
@@ -447,7 +441,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(82, 65.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(45, 76.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(82, 99.5);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(45, 210.5);
@@ -458,7 +452,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(35, 42);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(35, 53);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(40, 116);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(40, 126);
@@ -509,7 +503,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(80, 65);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(45, 77);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(82, 100);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(45, 210.8);
@@ -520,7 +514,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(53, 53);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(53, 63);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(58, 135.5);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(58, 145);
@@ -567,7 +561,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(80, 65);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(45, 77);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(82, 100);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(45, 210.8);
@@ -578,7 +572,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(53, 53);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(53, 63);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(58, 135.5);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(58, 145);
@@ -593,7 +587,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(58, 53.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(158, 53.4);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(42, 211.5);
                 $pdf->Write(12, "{$fechaEnvio}");
 
@@ -613,7 +607,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(85, 65);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(50, 77);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(84, 88);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(50, 199.5);
@@ -633,7 +627,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(54, 59);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(56, 73.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(42, 176);
                 $pdf->Write(12, "{$fechaEnvio}");
 
@@ -654,10 +648,11 @@ class PrintsController extends Controller
                 $pdf->SetXY(60, 53.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(135, 53.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(42, 216.5);
                 $pdf->Write(12, "{$fechaEnvio}");
                 break;
+
             case 'korean':
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
@@ -665,7 +660,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(40, 37.5);
                 $pdf->Write(12, "{$fechaEnvio}");
                 $pdf->SetXY(143, 47);
-                $pdf->Write(12, "(((({$pais} {$iata}))))");
+                $pdf->Write(12, "((({$pais} ({$iata}))))");
                 $pdf->SetXY(53, 56.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(58, 66);
@@ -683,7 +678,6 @@ class PrintsController extends Controller
                 $pdf->SetXY(60, 187);
                 $pdf->Write(12, "{$model->awb}");
 
-
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 4);
                 $pdf->SetXY(40, 128);
                 $pdf->Write(12, "{$fechaEnvio}");
@@ -696,7 +690,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(56, 40.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(157, 40.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(42, 203.5);
                 $pdf->Write(12, "{$fechaEnvio}");
 
@@ -705,7 +699,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(53, 53);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(53, 63);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(58, 130.5);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(58, 141);
@@ -720,12 +714,13 @@ class PrintsController extends Controller
                 $pdf->SetXY(84, 65);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(52, 77);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(84, 100);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(50, 210.8);
                 $pdf->Write(12, "{$fechaEnvio}");
                 break;
+
             case 'klm':
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
@@ -733,7 +728,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(80, 65);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(45, 77);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(82, 100);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(45, 210.8);
@@ -753,7 +748,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(53, 53);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(53, 63);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(53, 131);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(53, 140);
@@ -768,7 +763,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(58, 53.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(155, 53.4);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(42, 216.5);
                 $pdf->Write(12, "{$fechaEnvio}");
 
@@ -788,7 +783,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(82, 65);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(50, 77);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(82, 100);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(45, 210.5);
@@ -799,7 +794,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(52, 53);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(53, 62.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(58, 131);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(58, 141);
@@ -824,6 +819,7 @@ class PrintsController extends Controller
                 $pdf->Write(12, "{$model->awb}");
 
                 break;
+
             case 'latam':
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
@@ -837,26 +833,18 @@ class PrintsController extends Controller
                 $pdf->SetXY(44, 143.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(44, 151);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
 
                 break;
 
             case 'mercury':
-
-/*              $pdf->SetFontSize(18);
-                $pdf->SetXY(110, 58);
-                $pdf->Write(12, "{$model->awb}");
-                $pdf->SetXY(75, 75);
-                $pdf->Write(12, "{$producto}");
-                $pdf->SetXY(80, 100);
-                $pdf->Write(12, "{$iata}");*/
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
                 $pdf->SetFontSize(12);
                 $pdf->SetXY(53, 53);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(53, 63);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(58, 135.5);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(58, 145);
@@ -879,7 +867,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(80, 65);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(45, 77);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(82, 100);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(45, 210.8);
@@ -890,17 +878,18 @@ class PrintsController extends Controller
                 $pdf->SetXY(60, 53.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(145, 53.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(42, 216.5);
                 $pdf->Write(12, "{$fechaEnvio}");
                 break;
+
             case 'qantas':
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
                 $pdf->SetFontSize(12);
                 $pdf->SetXY(53, 53);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(53, 63);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(58, 135.5);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(58, 145);
@@ -931,13 +920,12 @@ class PrintsController extends Controller
 
             case 'ethiopian airlines':
 
-
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 1);
                 $pdf->SetFontSize(14);
                 $pdf->SetXY(85, 65.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(50, 76.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(48, 211);
                 $pdf->Write(12, "{$fechaEnvio}");
 
@@ -946,7 +934,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(53, 67.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(53, 82.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(60, 155.5);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(60, 165.5);
@@ -977,7 +965,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(62, 60.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(150, 60.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(40, 224);
                 $pdf->Write(12, "{$fechaEnvio}");
 
@@ -985,7 +973,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(62, 60.5);
                 $pdf->Write(12, "{$model->awb}");
                 $pdf->SetXY(150, 60.5);
-                $pdf->Write(12, "({$pais} {$iata})");
+                $pdf->Write(12, "{$pais} ({$iata})");
                 $pdf->SetXY(40, 224);
                 $pdf->Write(12, "{$fechaEnvio}");
 
@@ -1001,7 +989,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(98, 218);
                 $pdf->Write(12, "{$encargado}");
                 $pdf->SetXY(98, 238);
-                $pdf->Write(12, "{$model->encargado->rut}");
+                $pdf->Write(12, "{$rutEncargado}");
                 $pdf->SetXY(160, 244);
                 $pdf->Write(12, "{$fechaEnvio}");
 
@@ -1013,7 +1001,6 @@ class PrintsController extends Controller
                 $pdf->SetXY(80, 162.5);
                 $pdf->Write(12, "{$encargado}");
                 break;
-
 
             default:
                 return "<h2>Error</h2> <br> <p>Servicio No disponible</p>";
