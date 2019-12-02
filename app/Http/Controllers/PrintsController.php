@@ -1006,11 +1006,11 @@ class PrintsController extends Controller
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
                 $pdf->SetFontSize(12);
-                $pdf->SetXY(90, 65.5);
+                $pdf->SetXY(85, 65.5);
                 $pdf->Write(12, "{$model->awb}");
-                $pdf->SetXY(53, 75.5);
+                $pdf->SetXY(52, 77);
                 $pdf->Write(12, "{$pais} ({$iata})");
-                $pdf->SetXY(60, 210.5);
+                $pdf->SetXY(48, 211);
                 $pdf->Write(12, "{$fechaEnvio}");
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 3);
