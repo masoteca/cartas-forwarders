@@ -734,7 +734,7 @@ class PrintsController extends Controller
                 $pdf->SetXY(45, 210.8);
                 $pdf->Write(12, "{$fechaEnvio}");
 
-/*                $this->editorService->addnewpagefromsamefile($pdf, $path, 3);
+                /*                $this->editorService->addnewpagefromsamefile($pdf, $path, 3);
                 $pdf->SetFontSize(12);
                 $pdf->SetXY(142, 61.5);
                 $pdf->Write(12, "{$model->awb}");
@@ -1002,6 +1002,74 @@ class PrintsController extends Controller
                 $pdf->Write(12, "{$encargado}");
                 break;
 
+            case "avianca":
+
+                $this->editorService->addnewpagefromsamefile($pdf, $path, 2);
+                $pdf->SetFontSize(12);
+                $pdf->SetXY(90, 65.5);
+                $pdf->Write(12, "{$model->awb}");
+                $pdf->SetXY(53, 75.5);
+                $pdf->Write(12, "{$pais} ({$iata})");
+                $pdf->SetXY(60, 210.5);
+                $pdf->Write(12, "{$fechaEnvio}");
+
+                $this->editorService->addnewpagefromsamefile($pdf, $path, 3);
+                $pdf->SetFontSize(12);
+                $pdf->SetXY(53, 67.5);
+                $pdf->Write(12, "{$model->awb}");
+                $pdf->SetXY(53, 77.5);
+                $pdf->Write(12, "{$pais} ({$iata})");
+                $pdf->SetXY(60, 145.5);
+                $pdf->Write(12, "{$encargado}");
+                $pdf->SetXY(60, 155.5);
+                $pdf->Write(12, "{$fechaEnvio}");
+                $pdf->SetXY(60, 248);
+                $pdf->Write(12, "{$encargado}");
+                $pdf->SetXY(60, 258);
+                $pdf->Write(12, "{$fechaEnvio}");
+
+                $this->editorService->addnewpagefromsamefile($pdf, $path, 4);
+                $pdf->SetXY(40, 177.5);
+                $pdf->Write(12, "{$fechaEnvio}");
+                $pdf->SetXY(60, 187);
+                $pdf->Write(12, "{$model->awb}");
+                $pdf->SetXY(80, 206);
+                $pdf->Write(12, "{$encargado}");
+
+                $this->editorService->addnewpagefromsamefile($pdf, $path, 5);
+                $pdf->SetXY(62, 54.5);
+                $pdf->Write(12, "{$model->awb}");
+                $pdf->SetXY(150, 54.5);
+                $pdf->Write(12, "{$pais} ({$iata})");
+                $pdf->SetXY(40, 217);
+                $pdf->Write(12, "{$fechaEnvio}");
+
+                $this->editorService->addnewpagefromsamefile($pdf, $path, 6);
+                $pdf->SetXY(40, 42.5);
+                $pdf->Write(12, "{$fechaEnvio}");
+                $pdf->SetXY(142, 52);
+                $pdf->Write(12, "{$pais} ({$iata})");
+                $pdf->SetXY(54, 62);
+                $pdf->Write(12, "{$model->awb}");
+                $pdf->SetXY(58, 71.5);
+                $pdf->Write(12, "{$producto}");
+                $pdf->SetXY(98, 223);
+                $pdf->Write(12, "{$encargado}");
+                $pdf->SetXY(98, 242);
+                $pdf->Write(12, "{$rutEncargado}");
+                $pdf->SetXY(160, 246.5);
+                $pdf->Write(12, "{$fechaEnvio}");
+
+                $this->editorService->addnewpagefromsamefile($pdf, $path, 7);
+                $pdf->SetXY(40, 128.5);
+                $pdf->Write(12, "{$fechaEnvio}");
+                $pdf->SetXY(62, 147.5);
+                $pdf->Write(12, "{$model->awb}");
+                $pdf->SetXY(81, 157.5);
+                $pdf->Write(12, "{$encargado}");
+
+
+                break;
             default:
                 return "<h2>Error</h2> <br> <p>Servicio No disponible</p>";
                 break;
