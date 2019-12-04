@@ -38,18 +38,19 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        if ((new User)->where('email', 'jaime@jaimemazo.com')->doesntExist()) {
-            $user = array( User::create([
+        if ((new User)->where('email', 'jmazo@innovacodespa.com')->doesntExist()) {
+            $user = User::create([
                 'name' => 'Administrador',
-                'email' => 'jaime@innovacodespa.com',
-                'password' => bcrypt('mazomazo'),
-            ]),
-                User::create([
-                    'name' => 'Administrador',
-                    'email' => 'smunoz@innovacodespa.com',
-                    'password' => bcrypt('innovacodespa2019'),
-                ])
-            );
+                'email' => 'jmazo@innovacodespa.com',
+                'password' => bcrypt('innovacodespa2019'),
+            ]);
+        }
+        if ((new User)->where('email', 'smunoz@innovacodespa.com')->doesntExist()) {
+            $user2 = User::create([
+                'name' => 'Administrador',
+                'email' => 'smunoz@innovacodespa.com',
+                'password' => bcrypt('innovacodespa2019'),
+            ]);
         }
 
         $this->call(PermissionTableSeeder::class);
@@ -61,6 +62,7 @@ class DatabaseSeeder extends Seeder
         $rolesuper->syncPermissions($permisionsupervisor);
         $roleadmin->syncPermissions($permissions);
         $user->assignRole([$roleadmin->id]);
+        $user2->assignRole([$roleadmin->id]);
 
         $this->call(AirlinesTableSeeder::class);
         $this->call(DestinationsTableSeeder::class);
