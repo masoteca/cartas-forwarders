@@ -84,6 +84,13 @@
                         </a>
                     </li>
                 @endcan
+                @can('destino-list')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('destinos.index') }}">
+                            <i class="ni ni-bullet-list-67"></i>{{ __('Destinos') }}
+                        </a>
+                    </li>
+                @endcan
                 @can('user-list')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.index') }}">
