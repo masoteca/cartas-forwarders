@@ -25,4 +25,5 @@ use Illuminate\Database\Eloquent\Model;
 class Destination extends Model
 {
     //
+    protected $fillable = ['country', 'code'];
 }
