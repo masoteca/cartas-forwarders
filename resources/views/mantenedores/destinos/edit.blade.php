@@ -13,21 +13,14 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('destinos.store') }}" autocomplete="off">
+                        <form method="post" action="{{ route('destinos.update',['destino' => $destino->id]) }}" autocomplete="off">
+                            @method('PUT')
                             @csrf
-                            @if (session('status'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('status') }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif
 
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('country') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" >{{ __('Destination') }}</label>
-                                    <input type="text" name="country"  class="form-control form-control-alternative{{ $errors->has('country') ? ' is-invalid' : '' }}" placeholder="{{ __('Destination') }}" required autofocus>
+                                    <input type="text" name="country"  value="{{$destino->country}}" class="form-control form-control-alternative{{ $errors->has('country') ? ' is-invalid' : '' }}" placeholder="{{ __('Destination') }}" required autofocus>
 
                                     @if ($errors->has('country'))
                                         <span class="invalid-feedback" role="alert">
@@ -37,7 +30,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('code') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-name">{{ __('IATA CODE') }}</label>
-                                    <input type="text" maxlength="5" name="code" class="form-control form-control-alternative{{ $errors->has('code') ? ' is-invalid' : '' }}" placeholder="{{ __('IATA CODE') }}" required autofocus>
+                                    <input type="text" maxlength="5" value="{{$destino->code}}" name="code" class="form-control form-control-alternative{{ $errors->has('code') ? ' is-invalid' : '' }}" placeholder="{{ __('IATA CODE') }}" required >
 
                                     @if ($errors->has('code'))
                                         <span class="invalid-feedback" role="alert">

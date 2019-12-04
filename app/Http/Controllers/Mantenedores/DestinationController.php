@@ -16,6 +16,7 @@ class DestinationController extends Controller
     {
         $this->middleware('permission:destino-list');
         $this->middleware('permission:destino-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:destino-edit', ['only' => ['update', 'edit']]);
     }
 
     public function index()
@@ -40,5 +41,23 @@ class DestinationController extends Controller
         Destination::create($validatedData);
         return redirect()->route('destinos.index')->with('status', 'Destination creado exitosamente');
 
+    }
+
+    public function edit($id)
+    {
+        $destino = Destination::find($id);
+        return view('mantenedores.destinos.edit', ['destino' => $destino]);
+    }
+
+    public function update(Request $request, $id){
+        $validatedData = $request->validate([
+            'country' => 'required|max:100|unique:destinations',
+            'code' => 'required|max:5|unique:destinations'
+        ]);
+
+        $destino = Destination::find($id);
+        $destino->update($validatedData);
+        $destino->save();
+        return redirect()->route('destinos.index')->with('status', 'Destination actualizado exitosamente');
     }
 }

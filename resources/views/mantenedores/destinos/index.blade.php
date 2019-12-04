@@ -35,7 +35,7 @@
                                 <th scope="col">{{ __('Destino') }}</th>
                                 <th scope="col">{{ __('Codigo') }}</th>
                                 <th scope="col">{{ __('Creation Date') }}</th>
-                              {{--  <th scope="col"></th>--}}
+                                <th scope="col"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -44,21 +44,23 @@
                                     <td>{{ $destino->country }}</td>
                                     <td>{{ $destino->code }}</td>
                                     <td>{{ $destino->created_at->format('d/m/Y') }}</td>
-                                    {{--<td class="text-right">
+                                    <td class="text-right">
                                         <div class="dropdown">
                                             <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </a>
-                                            @can('product-edit')
+                                            @can('destino-edit')
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+
                                                     <a class="dropdown-item"
-                                                       href="{{ route('productos.edit', $destino) }}">{{ __('Edit') }}</a>
+                                                       href="{{ route('destinos.edit', $destino->id) }}"><i
+                                                            class="fas fa-edit"></i>{{ __('Edit') }}</a>
 
                                                 </div>
                                             @endcan
                                         </div>
-                                    </td>--}}
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

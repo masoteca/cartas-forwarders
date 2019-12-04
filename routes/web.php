@@ -26,9 +26,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
     Route::resource('document', 'CartasController')->except(['show']);
-    Route::resource('productos', 'Mantenedores\ProductoController')->only(['index', 'create','store']);
-    Route::resource('encargados', 'Mantenedores\EncargadoController')->only(['index', 'create','store']);
-    Route::resource('destinos', 'Mantenedores\DestinationController')->only(['index', 'create','store']);
+    Route::resource('productos', 'Mantenedores\ProductoController')->only(['index', 'create', 'store']);
+    Route::resource('encargados', 'Mantenedores\EncargadoController')->only(['index', 'create', 'store']);
+    Route::resource('destinos', 'Mantenedores\DestinationController')->except(['show', 'destroy']);
     Route::get('document/print/{document}', 'PrintsController@printcarta')->name('document.print');
     Route::get('document/etiqueta/{document}', 'EtiquetasController@print')->name('etiquetas.print');
 });
