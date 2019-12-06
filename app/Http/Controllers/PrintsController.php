@@ -657,12 +657,12 @@ class PrintsController extends Controller
                 $pdf->Write(12, "{$model->awb}");
 
                 $this->editorService->addnewpagefromsamefile($pdf, $path, 8);
-                $pdf->SetXY(30, 117);
-                $pdf->Write(12, "{$fechaEnvio}");
-                $pdf->SetXY(30, 160);
-                $pdf->Write(12, "{$encargado}");
-                $pdf->SetXY(30, 216.5);
+                $pdf->SetXY(57, 53.5);
                 $pdf->Write(12, "{$model->awb}");
+                $pdf->SetXY(130, 53.5);
+                $pdf->Write(12, "{$pais} ({$iata})");
+                $pdf->SetXY(40, 216.5);
+                $pdf->Write(12, "{$fechaEnvio}");
                 break;
 
             case 'korean':
