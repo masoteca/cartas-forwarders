@@ -35,7 +35,7 @@ class PrintsController extends Controller
         $path = resource_path("pdf/{$aerolinea}/cartas.pdf");
         $pdf = new Fpdi();
         $pdf->SetFont('Helvetica');
-        $this->editorService->addnewpagefromsamefile($pdf, resource_path("pdf/anexoh.pdf"), 1);
+        $this->editorService->addnewpagefromsamefile($pdf, resource_path("pdf/anexoh/anexoh.pdf"), 1);
         $fechaEnvio = date('d/m/Y', strtotime($model->fecha_envio));
         $encargado = iconv('UTF-8', 'windows-1252', $model->encargado->nombre);
         $rutEncargado = iconv('UTF-8', 'windows-1252', $model->encargado->rut);
@@ -44,7 +44,7 @@ class PrintsController extends Controller
         $pais = iconv('UTF-8', 'windows-1252', $model->destination->country);
 
         //Escribir informacion de anexo H
-        $pdf->SetXY(110, 45);
+        $pdf->SetXY(110, 40);
         $pdf->SetFontSize(18);
         $pdf->Write(12, "{$model->awb} ");
         $pdf->SetFont('Helvetica', 'B', 18);
