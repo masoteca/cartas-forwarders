@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 Auth::routes();
 
+Route::get('test', 'test\SomethingController@generateReport');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
